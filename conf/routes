@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index()
 GET		/register					controllers.Application.register()
 POST	/register					controllers.Application.createBlog()
 GET		/blog/:id					controllers.Application.blog(id)
+GET		/blog/:id/status/:mood		controllers.Application.addStatus(id, mood)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

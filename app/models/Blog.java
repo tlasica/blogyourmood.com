@@ -19,8 +19,10 @@ public class Blog extends Model {
 	@MaxLength(30)
 	public String label;
 
-	//TODO: unique
+	@Column(unique=true)
 	public String privateLink;
+	
+	@Column(unique=true)
 	public String publicLink;	
 	
 	private void generateLinks() {
@@ -28,7 +30,8 @@ public class Blog extends Model {
 		publicLink = UUID.randomUUID().toString();	
 	}
 	
-	public static Blog create(Blog blog) {
+	@Transactional	
+	public static Blog createAndSaveNewBlog(Blog blog) {
 		blog.generateLinks();
 		blog.save();
 		return blog;
