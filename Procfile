@@ -1,1 +1,1 @@
-web: target/start -DhttpPort=${PORT} -DapplyEvolutions.default=true
+web: target/start -Dhttp.port=${PORT} -DapplyEvolutions.default=true
