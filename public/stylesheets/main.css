@@ -125,5 +125,8 @@ input.button{font-size:120%; position:relative;background:#80c846;color:white;pa
 input.button:hover{box-shadow:0 3px 0 #6dae38,0 3px 4px rgba(0, 0, 0, 0.3);}
 input.button:active{box-shadow:0 1px 0 #6dae38;top:2px;-webkit-transition:none;}
 
+#moods a img{opacity:0.9;}
+#moods a img:hover{opacity:1.0;}
+
 
 #logo{clear:left; float:left; margin-right:20px;}
