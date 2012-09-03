@@ -41,11 +41,24 @@ public class Application extends Controller {
 	Blog blog = Blog.findByPrivateLink(privateLink);
 	List<BlogEntry> blogHistory = null;
 	blogHistory = BlogEntry.loadBlogHistory(blog, DEF_HISTORY_LIMIT);
-	return ok(views.html.blog.render(blog, blogHistory));
+	String currentMood = "?";
+	if (!blogHistory.isEmpty()) {
+		currentMood = blogHistory.get(0).mood.toString();
+	}
+	return ok(views.html.blog.render(blog, blogHistory, currentMood));
   }
   
   public static Result addStatus(String blogPrivLink, String mood) {
 	  BlogEntry.saveCurrentMoodInBlog(blogPrivLink, mood);
 	  return redirect(routes.Application.blog(blogPrivLink));		
   }
+
+  public static Result blogPublicView(String publicLink) {
+	  return TODO;
+  }
+
+  public static Result demo() {
+	  return TODO;
+  }
+  
 }

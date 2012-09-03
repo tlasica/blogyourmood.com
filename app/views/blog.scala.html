@@ -1,4 +1,4 @@
-@(blog: Blog, history: List[BlogEntry])
+@(blog: Blog, history: List[BlogEntry], current:String)
 
 @import helper._
 
@@ -12,17 +12,39 @@
 		<p>What is your mood now ?</p>			
 		<div id="moods">
 		<p>
-		<a href="/blog/@blog.privateLink/status/happy"><image src="@routes.Assets.at("images/face-happy.jpg")" width=150/></a>
-		<a href="/blog/@blog.privateLink/status/normal"><image src="@routes.Assets.at("images/face-neutral.jpg")" width=150/></a>
-		<a href="/blog/@blog.privateLink/status/sad"><image src="@routes.Assets.at("images/face-sad.jpg")" width=150/></a>
+		<!--
+		@for(moodType<-Seq[String]("happy","normal","sad","angry"); imgName="""@routes.Assets.at(images/face-"+moodType+".jpg)""") {
+			@imgName
+			<a href="/blog/@blog.privateLink/status/@moodType"><image src=@imgName width=150/></a>
+		}
+		--> 
+		@if("HAPPY"==current) {
+			<a href="/blog/@blog.privateLink/status/happy"><image class="current" src="@routes.Assets.at("images/face-happy.jpg")" width=150/></a>		
+		} else {
+			<a href="/blog/@blog.privateLink/status/happy"><image src="@routes.Assets.at("images/face-happy.jpg")" width=150/></a>
+		}
+		@if("NORMAL"==current) {
+			<a href="/blog/@blog.privateLink/status/normal"><image class="current" src="@routes.Assets.at("images/face-neutral.jpg")" width=150/></a>
+		} else {
+			<a href="/blog/@blog.privateLink/status/normal"><image src="@routes.Assets.at("images/face-neutral.jpg")" width=150/></a>
+		}
+		@if("SAD"==current) {
+			<a href="/blog/@blog.privateLink/status/sad"><image class="current" src="@routes.Assets.at("images/face-sad.jpg")" width=150/></a>
+		} else {
+			<a href="/blog/@blog.privateLink/status/sad"><image src="@routes.Assets.at("images/face-sad.jpg")" width=150/></a>
+		}
+		@if("ANGRY"==current) {
+		<a href="/blog/@blog.privateLink/status/angry"><image class="current" src="@routes.Assets.at("images/face-angry.jpg")" width=150/></a>
+		} else {
 		<a href="/blog/@blog.privateLink/status/angry"><image src="@routes.Assets.at("images/face-angry.jpg")" width=150/></a>
+		}
 		</p>		
 		</div>
 
 	</article>
 	
 	<aside>
-	Share <a href="@blog.publicLink">public link</a> to your blog.
+	Share <a href="/pub/@blog.publicLink">public link</a> to your blog.
 	<h3>History</h3>
 		@for(entry <- history) {
 			<p>
@@ -44,9 +66,9 @@
 		}
 	<h3>Analysis</h3>
 	<ul class="points">
-	<li><a href="/blog/@blog.privateLink/calendar">calendar</a></li>
-	<li><a href="/blog/@blog.privateLink/timechart">time chart</a></li>
-	<li><a href="/blog/@blog.privateLink/histogram">histogram</a></li>
+	<li><a href="/blog/@blog.privateLink/calendar/week">calendar</a></li>
+	<li><a href="/blog/@blog.privateLink/timechart/7">time chart</a></li>
+	<li><a href="/blog/@blog.privateLink/histogram/7">histogram</a></li>
 	</ul>
 	</aside>
 	

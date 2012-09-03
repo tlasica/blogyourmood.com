@@ -8,6 +8,11 @@ GET		/register					controllers.Application.register()
 POST	/register					controllers.Application.createBlog()
 GET		/blog/:id					controllers.Application.blog(id)
 GET		/blog/:id/status/:mood		controllers.Application.addStatus(id, mood)
+GET		/demo						controllers.Application.demo()
+GET		/pub/:id					controllers.Application.blogPublicView(id)
+GET		/blog/:id/timechart/:days	controllers.Charts.timechart(id,days)
+GET		/blog/:id/histogram/:days	controllers.Charts.histogram(id,days)
+GET		/blog/:id/calendar/:period	controllers.Charts.calendar(id,period)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
