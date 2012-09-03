@@ -14,7 +14,7 @@
 		<p>
 		<a href="/blog/@blog.privateLink/status/happy"><image src="@routes.Assets.at("images/face-happy.jpg")" width=150/></a>
 		<a href="/blog/@blog.privateLink/status/normal"><image src="@routes.Assets.at("images/face-neutral.jpg")" width=150/></a>
-		<a href="/blog/@blog.privateLink/status/said"><image src="@routes.Assets.at("images/face-said.jpg")" width=150/></a>
+		<a href="/blog/@blog.privateLink/status/sad"><image src="@routes.Assets.at("images/face-sad.jpg")" width=150/></a>
 		<a href="/blog/@blog.privateLink/status/angry"><image src="@routes.Assets.at("images/face-angry.jpg")" width=150/></a>
 		</p>		
 		</div>
@@ -29,8 +29,8 @@
 			@if(entry.mood == models.Mood.ANGRY) { 
 			<image src="@routes.Assets.at("images/face-angry-small.jpg")" height=20/>
 			}
-			@if(entry.mood == models.Mood.SAID) { 
-			<image src="@routes.Assets.at("images/face-said-small.jpg")" height=20/>
+			@if(entry.mood == models.Mood.SAD) { 
+			<image src="@routes.Assets.at("images/face-sad-small.jpg")" height=20/>
 			}
 			@if(entry.mood == models.Mood.NORMAL) { 
 			<image src="@routes.Assets.at("images/face-neutral-small.jpg")" height=20/>

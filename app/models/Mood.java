@@ -9,7 +9,7 @@ public enum Mood {
 
 	HAPPY,
 	NORMAL,
-	SAID,
+	SAD,
 	ANGRY;
 
 	public static Mood fromString(String status) {
@@ -22,7 +22,7 @@ public enum Mood {
                         {
                             put("angry", Mood.ANGRY);
                             put("normal", Mood.NORMAL);
-                            put("said", Mood.SAID);
+                            put("sad", Mood.SAD);
                             put("happy", Mood.HAPPY);
                         }
                     });

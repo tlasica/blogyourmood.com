@@ -41,7 +41,6 @@ public class Application extends Controller {
 	Blog blog = Blog.findByPrivateLink(privateLink);
 	List<BlogEntry> blogHistory = null;
 	blogHistory = BlogEntry.loadBlogHistory(blog, DEF_HISTORY_LIMIT);
-	//TODO: load all requred data - list of last 3
 	return ok(views.html.blog.render(blog, blogHistory));
   }
   
