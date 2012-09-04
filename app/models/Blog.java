@@ -25,14 +25,13 @@ public class Blog extends Model {
 	@Column(unique=true)
 	public String publicLink;	
 	
-	private void generateLinks() {
+	public void generateLinks() {
 		privateLink = UUID.randomUUID().toString();
 		publicLink = UUID.randomUUID().toString();	
 	}
 	
 	@Transactional	
-	public static Blog createAndSaveNewBlog(Blog blog) {
-		blog.generateLinks();
+	public static Blog saveNewBlog(Blog blog) {
 		blog.save();
 		return blog;
 	}
@@ -45,7 +44,12 @@ public class Blog extends Model {
 	
 	public static Blog findByPrivateLink(String privateLink) {
 		List<Blog> res = find.where().eq("privateLink", privateLink).findList();
-		Blog blog = res.get(0);
-		return blog;
+		if (res!=null && !res.isEmpty() ) {
+			return res.get(0);
+		}
+		else {
+			return null;
+		}
 	}
+
 }

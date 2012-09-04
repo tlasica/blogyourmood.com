@@ -1,4 +1,4 @@
-idpackage controllers;
+package controllers;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import models.*;
 public class Application extends Controller {
   
 	private static final int DEF_HISTORY_LIMIT = 3;
+	private static final String DEMO_BLOG_LINK = "demo123";	
   
 	static Form<Blog> blogCreateForm = form(Blog.class);
   
@@ -32,7 +33,8 @@ public class Application extends Controller {
 	} 
 	else {
 		Blog blog = form.get();
-		blog = Blog.createAndSaveNewBlog(blog);
+		blog.generateLinks();
+		blog = Blog.saveNewBlog(blog);
 		return redirect(routes.Application.blog(blog.privateLink));		
 	}
   }
@@ -58,7 +60,19 @@ public class Application extends Controller {
   }
 
   public static Result demo() {
-		return this.blog("demo123");
+		createDemoBlogIfNotExists();
+		return blog(DEMO_BLOG_LINK);
 	}
+  
+  public static void createDemoBlogIfNotExists() {
+		Blog blog = Blog.findByPrivateLink(DEMO_BLOG_LINK);
+		if (null==blog) {
+			blog = new Blog();
+			blog.label = "Demo Version - try it!";
+			blog.privateLink = DEMO_BLOG_LINK;
+			blog.publicLink = DEMO_BLOG_LINK+"public";
+			Blog.saveNewBlog(blog);
+		}		
+  }
   
 }
