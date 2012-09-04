@@ -1,4 +1,4 @@
-package controllers;
+idpackage controllers;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class Application extends Controller {
   }
 
   public static Result demo() {
-	  return TODO;
-  }
+		return this.blog("demo123");
+	}
   
 }
