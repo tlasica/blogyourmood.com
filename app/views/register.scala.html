@@ -10,15 +10,10 @@
 	
 		<h1>Create new mood blog</h1>
 		<p>
-		All you have to do is to provide a label for your blog.
+		All you have to do is to provide a label for your blog and click the button.
 		</p>
 		<p>
-		After creation you get 2 links:
-		<ul class = "points">
-		<li> <i>private</i> for you
-		<li> <i>public</i> to share with your friends or co-workers
-		</ul>
-		</p>
+		After creation you will get a <b>login link</b>.<br>
 		<p>
 		@form(routes.Application.createBlog(), 'id->"registerForm") {
 			@inputText( blogCreateForm("label"), '_label->"Please label your blog", 'size->30, '_showErrors->true, '_showConstraints->false )
@@ -26,19 +21,21 @@
 		}
 		</p>
 	
-
 	</article>
-
+	
 	<aside>
-		<h3>private link</h3>
+		<h3>Login link</h3>
 		<p>
-		<i>private link</i> it is used to login to your blog
-		and enables you to register your mood.
+		Instead of using login or email we give you a link.
+		This link is unique and gives acces to your blog.
 		</p>
-		<h3>public link</h3>
-		<p><i>public link</i> is used to share your mood blog.
-		It does not allow to make any changes in your blog.
+		<p>
+		After yu create the blog please save your link in some convenient place e.g. in your browser.
+		</p>		
+		<p class="importantParagraph">		
+		Do not forget to save it !
 		</p>
+	
 	</aside>
 	
 	</div>

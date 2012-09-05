@@ -29,7 +29,7 @@
 	</article>
 	
 	<aside>
-	Share <a href="/pub/@blog.publicLink">public link</a> to your blog.
+	This is <a href="/blog/@blog.privateLink">a login link</a> to your blog.
 	<h3>History</h3>
 		@for(entry <- history) {
 			<p>
@@ -45,13 +45,12 @@
 			@if(entry.mood == models.Mood.HAPPY) { 
 			<image src="@routes.Assets.at("images/face-happy-small.jpg")" height=20/>
 			}
-			@entry.mood<br>
-			<small>on @entry.timestampFormatted()</small>
+			@entry.mood <small>on @entry.timestampFormatted()</small>
 			</p>
 		}
 	<h3>Analysis</h3>
 	<ul class="points">
-	<li><a href="/blog/@blog.privateLink/calendar/week">calendar</a></li>
+	<li><a href="/blog/@blog.privateLink/calendar/7">calendar</a></li>
 	<li><a href="/blog/@blog.privateLink/timechart/7">time chart</a></li>
 	<li><a href="/blog/@blog.privateLink/histogram/7">histogram</a></li>
 	</ul>

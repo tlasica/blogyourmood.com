@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class BlogEntry extends Model {
 
+	private static final DateFormat TIMESTAMP_FORMAT = SimpleDateFormat.getDateTimeInstance();
+	private static final DateFormat TIME_FORMAT = SimpleDateFormat.getTimeInstance();
+	
 	@Id
 	public Long 	id;
 	
@@ -35,8 +38,11 @@ public class BlogEntry extends Model {
 	}
 	
 	public String timestampFormatted() {
-		DateFormat format = SimpleDateFormat.getDateTimeInstance();
-		return format.format( this.tstamp.getTime() );
+		return TIMESTAMP_FORMAT.format( tstamp.getTime() );
+	}
+	
+	public String timeStr() {
+		return TIME_FORMAT.format(tstamp.getTime());
 	}
 	
 	@Transactional

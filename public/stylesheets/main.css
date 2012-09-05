@@ -128,4 +128,6 @@ input.button:active{box-shadow:0 1px 0 #6dae38;top:2px;-webkit-transition:none;}
 #moods a img:hover{opacity:1.0;}
 #moods a img.current {border-bottom:6px solid #67a932;}
 
+p.importantParagraph{color:red; font-weight:bold;}
+
 #logo{clear:left; float:left; margin-right:20px;}
