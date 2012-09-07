@@ -64,7 +64,7 @@ public class Charts extends Controller {
 		Map<LocalDate, List<BlogEntry>> res = new HashMap<LocalDate, List<BlogEntry>>();
 		List<BlogEntry> moodHistory = BlogEntry.loadBlogHistoryForPeriod(blog, now.minusDays(numDays), now); 
 		for (BlogEntry m : moodHistory) {
-			LocalDate day = LocalDate.fromCalendarFields(m.tstamp);
+			LocalDate day = m.tstamp.toLocalDate();
 			if (!res.containsKey(day)) {
 				res.put(day, new ArrayList<BlogEntry>());
 			}

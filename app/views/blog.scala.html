@@ -1,4 +1,4 @@
-@(blog: Blog, history: List[BlogEntry], message:String)
+@(blog: Blog, history: List[BlogEntry], notesForm:Form[BlogEntryNotes], message:String)
 
 @import helper._
 
@@ -20,6 +20,11 @@
 		<a href="/blog/@blog.privateLink/status/angry"><image src="@routes.Assets.at("images/face-angry.jpg")" width=150/></a>
 		</p>		
 		</div>
+		<p>
+		@form(routes.Application.addStatus(blog.privateLink,"status"), 'id->"moodNotesForm") {
+			@inputText( notesForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->60, '_showErrors->true, '_showConstraints->false )
+		}
+		</p>
 
 	</article>
 	

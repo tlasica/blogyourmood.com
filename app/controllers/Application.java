@@ -17,6 +17,7 @@ public class Application extends Controller {
 	private static final String DEMO_BLOG_LINK = "demo123";
 
 	static Form<Blog> blogCreateForm = form(Blog.class);
+	static Form<BlogEntryNotes> entryNotesForm = form(BlogEntryNotes.class);
 
 	public static Result index() {
 		return ok(index.render("Your new application is ready."));
@@ -49,12 +50,15 @@ public class Application extends Controller {
 		}
 		List<BlogEntry> blogHistory = null;
 		blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);
-		return ok(views.html.blog.render(blog, blogHistory, message));		
+		return ok(views.html.blog.render(blog, blogHistory, entryNotesForm, message));		
 	}
 	
 	public static Result addStatus(String blogPrivLink, String mood) {
+		Form<BlogEntryNotes> form = entryNotesForm.bindFromRequest();
+		String notes = form.get().notes;
+
 		BlogEntry.saveCurrentMoodInBlog(blogPrivLink, mood);		
-		String message = "Your mood has been saved.";
+		String message = "Your mood has been saved with notes: " + notes;
 		return showBlog(blogPrivLink, message); 
 	}
 

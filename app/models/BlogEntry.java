@@ -12,13 +12,16 @@ import play.db.ebean.Model.Finder;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 @Entity
 public class BlogEntry extends Model {
 
-	private static final DateFormat TIMESTAMP_FORMAT = SimpleDateFormat.getDateTimeInstance();
-	private static final DateFormat TIME_FORMAT = SimpleDateFormat.getTimeInstance();
+	private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormat.forPattern("E dd MMMM HH:mm");
+	private static final DateTimeFormatter TIME_FORMAT = DateTimeFormat.forPattern("HH:mm");
 	
 	@Id
 	public Long 	id;
@@ -28,24 +31,24 @@ public class BlogEntry extends Model {
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	public Mood	mood;
+	public Mood	 mood;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	public Calendar	tstamp;
+	public DateTime	tstamp;
 		
 	public static Finder<Long,BlogEntry> find = new Finder(Long.class, BlogEntry.class);
 	
 	public BlogEntry(Mood mood) {
-		this.tstamp = Calendar.getInstance();
+		this.tstamp = DateTime.now();
 		this.mood = mood;
 	}
 	
 	public String timestampFormatted() {
-		return TIMESTAMP_FORMAT.format( tstamp.getTime() );
+		return tstamp.toString(DATETIME_FORMAT);
 	}
 	
 	public String timeStr() {
-		return TIME_FORMAT.format(tstamp.getTime());
+		return tstamp.toString(TIME_FORMAT);
 	}
 	
 	@Transactional
