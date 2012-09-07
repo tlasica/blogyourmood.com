@@ -44,8 +44,11 @@ public class Application extends Controller {
 
 	public static Result showBlog(String privateLink, String message) {
 		Blog blog = Blog.findByPrivateLink(privateLink);
+		if(null==blog) {
+			return play.mvc.Results.internalServerError("Ooops. Invalid URL. Blog with this id does not exists.");
+		}
 		List<BlogEntry> blogHistory = null;
-		blogHistory = BlogEntry.loadBlogHistory(blog, DEF_HISTORY_LIMIT);
+		blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);
 		return ok(views.html.blog.render(blog, blogHistory, message));		
 	}
 	
@@ -53,10 +56,6 @@ public class Application extends Controller {
 		BlogEntry.saveCurrentMoodInBlog(blogPrivLink, mood);		
 		String message = "Your mood has been saved.";
 		return showBlog(blogPrivLink, message); 
-	}
-
-	public static Result blogPublicView(String publicLink) {
-		return TODO;
 	}
 
 	public static Result demo() {

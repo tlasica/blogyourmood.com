@@ -3,6 +3,7 @@ package models;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import play.db.ebean.*;
@@ -10,6 +11,8 @@ import play.db.ebean.Model.Finder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.joda.time.LocalDate;
 
 @Entity
 public class BlogEntry extends Model {
@@ -53,12 +56,21 @@ public class BlogEntry extends Model {
 		entry.save();		
 	}
 	
-	public static List<BlogEntry> loadBlogHistory(Blog blog, int limitEntries) {
+	public static List<BlogEntry> loadBlogHistoryLimitedEntries(Blog blog, int limitEntries) {
 		List<BlogEntry> entries = find.where()
 				.eq("blog", blog)
 				.orderBy("tstamp desc")
 				.setMaxRows(limitEntries).findList();
 		return entries;
 	}
-
+	
+	public static List<BlogEntry> loadBlogHistoryForPeriod(Blog blog, LocalDate fromDate, LocalDate toDate) {
+		List<BlogEntry> entries = find.where()
+				.gt("tstamp", fromDate.minusDays(1))
+				.lt("tstamp", toDate.plusDays(1))
+				.orderBy("tstamp desc")
+				.findList();
+		return entries;
+	}
+	
 }
