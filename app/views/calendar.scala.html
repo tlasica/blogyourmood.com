@@ -12,7 +12,7 @@
 		@for(day <- calendar) {
 			<h3>@day.dateStr</h3>
 			@for(mood <- day.moods) {
-				<p>
+				<p class="calendarRow">
 				@mood.timeStr()
 				<!-- IMAGE TODO: make a function! -->
 				@if(mood.mood == models.Mood.ANGRY) { 

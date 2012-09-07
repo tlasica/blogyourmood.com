@@ -1,9 +1,11 @@
-@(blog: Blog, history: List[BlogEntry], current:String)
+@(blog: Blog, history: List[BlogEntry], message:String)
 
 @import helper._
 
-@main {
 
+@main {
+	
+	
 	<div id="content" class="wrapper doc">
 	
 	<article>
@@ -12,17 +14,10 @@
 		<p>What is your mood now ?</p>			
 		<div id="moods">
 		<p>
-		<!--
-		@for(moodType<-Seq[String]("happy","normal","sad","angry"); imgName="""@routes.Assets.at(images/face-"+moodType+".jpg)""") {
-			@imgName
-			<a href="/blog/@blog.privateLink/status/@moodType"><image src=@imgName width=150/></a>
-		}
-		--> 
-
-		<a href="/blog/@blog.privateLink/status/happy"><image @if(current=="HAPPY") {class="current"} src="@routes.Assets.at("images/face-happy.jpg")" width=150/></a>		
-		<a href="/blog/@blog.privateLink/status/normal"><image @if(current=="NORMAL") {class="current"} src="@routes.Assets.at("images/face-neutral.jpg")" width=150/></a>
-		<a href="/blog/@blog.privateLink/status/sad"><image @if(current=="SAD") {class="current"} src="@routes.Assets.at("images/face-sad.jpg")" width=150/></a>
-		<a href="/blog/@blog.privateLink/status/angry"><image @if(current=="ANGRY") {class="current"} src="@routes.Assets.at("images/face-angry.jpg")" width=150/></a>
+		<a href="/blog/@blog.privateLink/status/happy"><image src="@routes.Assets.at("images/face-happy.jpg")" width=150/></a>		
+		<a href="/blog/@blog.privateLink/status/normal"><image src="@routes.Assets.at("images/face-neutral.jpg")" width=150/></a>
+		<a href="/blog/@blog.privateLink/status/sad"><image src="@routes.Assets.at("images/face-sad.jpg")" width=150/></a>
+		<a href="/blog/@blog.privateLink/status/angry"><image src="@routes.Assets.at("images/face-angry.jpg")" width=150/></a>
 		</p>		
 		</div>
 
@@ -57,4 +52,15 @@
 	</aside>
 	
 	</div>
+
+	@if(message) {
+		<div id="news" class="wrapper">
+		<p>@message</p>
+		</div>    
+	
+		<script type="text/javascript">
+		$('#news').delay(5000).fadeOut('slow');
+		</script>
+	}
+
 }
