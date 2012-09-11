@@ -19,18 +19,17 @@
 		}
 
 		<a href="#" class="MOOD_OPTION" value="happy">
-			<img src="@routes.Assets.at("images/face-happy.jpg")" alt="happy" width=150/>
+			<img src="@routes.Assets.at("images/face-happy.jpg")" alt="happy" width=150px />
 		</a>		
 		<a href="#" class="MOOD_OPTION" value="normal">
-			<img src="@routes.Assets.at("images/face-neutral.jpg")" alt="normal" width=150/>
+			<img src="@routes.Assets.at("images/face-neutral.jpg")" alt="normal" width=150px />
 		</a>
 		<a href="#" class="MOOD_OPTION" value="sad">
-			<img src="@routes.Assets.at("images/face-sad.jpg")" alt="sad" width=150/>
+			<img src="@routes.Assets.at("images/face-sad.jpg")" alt="sad" width=150px />
 		</a>
 		<a href="#" class="MOOD_OPTION" value="angry">		
-			<img src="@routes.Assets.at("images/face-angry.jpg")" alt="angry" width=150/>
+			<img src="@routes.Assets.at("images/face-angry.jpg")" alt="angry" width=150px />
 		</a>
-		</p>		
 		</div>
 
 	</article>
@@ -41,16 +40,16 @@
 		@for(entry <- history) {
 			<p>
 			@if(entry.mood == models.Mood.ANGRY) { 
-			<image src="@routes.Assets.at("images/face-angry-small.jpg")" height=20/>
+			<image src="@routes.Assets.at("images/face-angry-small.jpg")" alt="angry" height=20px />
 			}
 			@if(entry.mood == models.Mood.SAD) { 
-			<image src="@routes.Assets.at("images/face-sad-small.jpg")" height=20/>
+			<image src="@routes.Assets.at("images/face-sad-small.jpg")" alt="sad" height=20px />
 			}
 			@if(entry.mood == models.Mood.NORMAL) { 
-			<image src="@routes.Assets.at("images/face-neutral-small.jpg")" height=20/>
+			<image src="@routes.Assets.at("images/face-neutral-small.jpg")" alt="normal" height=20px />
 			}
 			@if(entry.mood == models.Mood.HAPPY) { 
-			<image src="@routes.Assets.at("images/face-happy-small.jpg")" height=20/>
+			<image src="@routes.Assets.at("images/face-happy-small.jpg")" alt="happy" height=20px />
 			}
 			<small>on @entry.timestampFormatted()</small><br>
 			<small>@entry.notes</small>
