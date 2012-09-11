@@ -1,4 +1,4 @@
-@(blog: Blog, history: List[BlogEntry], moodForm:Form[BlogEntryNotes], message:String)
+@(blog: Blog, history: List[BlogEntry], moodForm:Form[BlogEntry], message:String)
 
 @import helper._
 
@@ -52,7 +52,8 @@
 			@if(entry.mood == models.Mood.HAPPY) { 
 			<image src="@routes.Assets.at("images/face-happy-small.jpg")" height=20/>
 			}
-			@entry.mood <small>on @entry.timestampFormatted()</small>
+			<small>on @entry.timestampFormatted()</small><br>
+			<small>@entry.notes</small>
 			</p>
 		}
 	<h3>Analysis</h3>

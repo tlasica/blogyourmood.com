@@ -17,7 +17,7 @@ public class Application extends Controller {
 	private static final String DEMO_BLOG_LINK = "demo123";
 
 	static Form<Blog> blogCreateForm = form(Blog.class);
-	static Form<BlogEntryNotes> entryNotesForm = form(BlogEntryNotes.class);
+	static Form<BlogEntry>moodForm = form(BlogEntry.class);
 
 	public static Result index() {
 		return ok(index.render("Your new application is ready."));
@@ -35,39 +35,38 @@ public class Application extends Controller {
 			Blog blog = form.get();
 			blog.generateLinks();
 			blog = Blog.saveNewBlog(blog);
-			return redirect(routes.Application.blog(blog.privateLink));
+			return redirect(routes.Application.showBlog(blog.privateLink));
 		}
 	}
 
-	public static Result blog(String privateLink) {
-		return showBlog(privateLink, null);
+	public static Result showBlog(String privateLink) {
+		return showBlogWithMessage(privateLink, null);
 	}
 
-	public static Result showBlog(String privateLink, String message) {
+	public static Result showBlogWithMessage(String privateLink, String message) {
 		Blog blog = Blog.findByPrivateLink(privateLink);
 		if(null==blog) {
 			return play.mvc.Results.internalServerError("Ooops. Invalid URL. Blog with this id does not exists.");
 		}
 		List<BlogEntry> blogHistory = null;
 		blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);
-		return ok(views.html.blog.render(blog, blogHistory, entryNotesForm, message));		
+		return ok(views.html.blog.render(blog, blogHistory, moodForm, message));		
 	}
 	
 	public static Result addStatus(String blogPrivLink) {
 		
-		Form<BlogEntryNotes> bindForm = entryNotesForm.bindFromRequest();
 		DynamicForm form = form().bindFromRequest();
-		String notes = bindForm.get().notes;
+		String notes = form.get("notes");
 		String moodName = form.get("CHOOSEN_MOOD");
 				
 		BlogEntry.saveCurrentMoodInBlog(blogPrivLink, moodName, notes);		
 		String message = "Your mood has been saved";
-		return showBlog(blogPrivLink, message); 
+		return redirect(routes.Application.showBlogWithMessage(blogPrivLink, message));
 	}
 
 	public static Result demo() {
 		createDemoBlogIfNotExists();
-		return blog(DEMO_BLOG_LINK);
+		return redirect(routes.Application.showBlog(DEMO_BLOG_LINK));
 	}
 
 	public static void createDemoBlogIfNotExists() {
