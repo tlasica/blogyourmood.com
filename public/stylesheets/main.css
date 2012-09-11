@@ -133,3 +133,8 @@ p.importantParagraph{color:red; font-weight:bold;}
 #logo{clear:left; float:left; margin-right:20px;}
 
 p.calendarRow{line-height: 0.8em; margin:2px 0; font-size:12px;}
+
+input.moodButton{position:relative; text-indent:-9999em; height:120px; width:150px; background:url("/assets/images/face-happy.jpg") no-repeat; color:white; border:none;}
+input.moodButton:hover{box-shadow:0 3px 0 #6dae38,0 3px 4px rgba(0, 0, 0, 0.3);}
+input.moodButton:active{box-shadow:0 1px 0 #6dae38;top:2px;-webkit-transition:none;}
+

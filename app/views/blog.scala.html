@@ -1,4 +1,4 @@
-@(blog: Blog, history: List[BlogEntry], notesForm:Form[BlogEntryNotes], message:String)
+@(blog: Blog, history: List[BlogEntry], moodForm:Form[BlogEntryNotes], message:String)
 
 @import helper._
 
@@ -11,20 +11,27 @@
 	<article>
 	
 		<h1>@blog.label</h1>
-		<p>What is your mood now ?</p>			
+		<p>What is your mood now ? <small>make a short description and choose emoticon</small></p>		
 		<div id="moods">
-		<p>
-		<a href="/blog/@blog.privateLink/status/happy"><image src="@routes.Assets.at("images/face-happy.jpg")" width=150/></a>		
-		<a href="/blog/@blog.privateLink/status/normal"><image src="@routes.Assets.at("images/face-neutral.jpg")" width=150/></a>
-		<a href="/blog/@blog.privateLink/status/sad"><image src="@routes.Assets.at("images/face-sad.jpg")" width=150/></a>
-		<a href="/blog/@blog.privateLink/status/angry"><image src="@routes.Assets.at("images/face-angry.jpg")" width=150/></a>
+		@form(routes.Application.addStatus(blog.privateLink), 'id->"MOOD_FORM") {
+			@inputText( moodForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->63, '_showErrors->true, '_showConstraints->false )
+			<input type="hidden" id="HIDDEN_MOOD_INPUT" name="CHOOSEN_MOOD" val=""/>
+		}
+
+		<a href="#" class="MOOD_OPTION" value="happy">
+			<img src="@routes.Assets.at("images/face-happy.jpg")" alt="happy" width=150/>
+		</a>		
+		<a href="#" class="MOOD_OPTION" value="normal">
+			<img src="@routes.Assets.at("images/face-neutral.jpg")" alt="normal" width=150/>
+		</a>
+		<a href="#" class="MOOD_OPTION" value="sad">
+			<img src="@routes.Assets.at("images/face-sad.jpg")" alt="sad" width=150/>
+		</a>
+		<a href="#" class="MOOD_OPTION" value="angry">		
+			<img src="@routes.Assets.at("images/face-angry.jpg")" alt="angry" width=150/>
+		</a>
 		</p>		
 		</div>
-		<p>
-		@form(routes.Application.addStatus(blog.privateLink,"status"), 'id->"moodNotesForm") {
-			@inputText( notesForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->60, '_showErrors->true, '_showConstraints->false )
-		}
-		</p>
 
 	</article>
 	
@@ -67,5 +74,13 @@
 		$('#news').delay(5000).fadeOut('slow');
 		</script>
 	}
+
+	<script type="text/javascript">
+	$(".MOOD_OPTION").click(function() {
+		var moodName = $(this).attr("value");
+		$("#HIDDEN_MOOD_INPUT").val(moodName);
+		$("#MOOD_FORM").submit();
+	});
+	</script>
 
 }

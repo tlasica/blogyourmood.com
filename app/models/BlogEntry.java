@@ -35,6 +35,8 @@ public class BlogEntry extends Model {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	public DateTime	tstamp;
+	
+	public String notes;
 		
 	public static Finder<Long,BlogEntry> find = new Finder(Long.class, BlogEntry.class);
 	
@@ -52,10 +54,11 @@ public class BlogEntry extends Model {
 	}
 	
 	@Transactional
-	public static void saveCurrentMoodInBlog(String blogPrivLink, String status) {
+	public static void saveCurrentMoodInBlog(String blogPrivLink, String status, String notes) {
 		Blog blog = Blog.findByPrivateLink( blogPrivLink );
 		BlogEntry entry = new BlogEntry( Mood.fromString(status) );
 		entry.blog = blog;
+		entry.notes = notes;
 		entry.save();		
 	}
 	

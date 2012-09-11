@@ -53,12 +53,15 @@ public class Application extends Controller {
 		return ok(views.html.blog.render(blog, blogHistory, entryNotesForm, message));		
 	}
 	
-	public static Result addStatus(String blogPrivLink, String mood) {
-		Form<BlogEntryNotes> form = entryNotesForm.bindFromRequest();
-		String notes = form.get().notes;
-
-		BlogEntry.saveCurrentMoodInBlog(blogPrivLink, mood);		
-		String message = "Your mood has been saved with notes: " + notes;
+	public static Result addStatus(String blogPrivLink) {
+		
+		Form<BlogEntryNotes> bindForm = entryNotesForm.bindFromRequest();
+		DynamicForm form = form().bindFromRequest();
+		String notes = bindForm.get().notes;
+		String moodName = form.get("CHOOSEN_MOOD");
+				
+		BlogEntry.saveCurrentMoodInBlog(blogPrivLink, moodName, notes);		
+		String message = "Your mood has been saved";
 		return showBlog(blogPrivLink, message); 
 	}
 
