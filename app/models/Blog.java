@@ -46,10 +46,20 @@ public class Blog extends Model {
 		find.ref(id).delete();
 	}
 	
-	public static Finder<Long,Blog> find = new Finder<Long,Blog>(Long.class, Blog.class);
+	private static Finder<Long,Blog> find = new Finder<Long,Blog>(Long.class, Blog.class);
 	
 	public static Blog findByPrivateLink(String privateLink) {
 		List<Blog> res = find.where().eq("privateLink", privateLink).findList();
+		if (res!=null && !res.isEmpty() ) {
+			return res.get(0);
+		}
+		else {
+			return null;
+		}
+	}
+
+	public static Blog findByPublicLink(String publicLink) {
+		List<Blog> res = find.where().eq("publicLink", publicLink).findList();
 		if (res!=null && !res.isEmpty() ) {
 			return res.get(0);
 		}

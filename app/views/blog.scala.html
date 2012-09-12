@@ -35,7 +35,12 @@
 	</article>
 	
 	<aside>
+	<p>
 	This is <a href="/blog/@blog.privateLink">a login link</a> to your blog.
+	</p>
+	<p>
+	Share your <a href="/public/@blog.publicLink">public link</a> with friends.
+	</p>
 	<h3>History</h3>
 		@for(entry <- history) {
 			<p>
@@ -51,7 +56,7 @@
 			@if(entry.mood == models.Mood.HAPPY) { 
 			<image src="@routes.Assets.at("images/face-happy-small.jpg")" alt="happy" height=20px />
 			}
-			<small>on @entry.timestampFormatted()</small><br>
+			<small>@entry.timestampFormatted()</small><br>
 			<small>@entry.notes</small>
 			</p>
 		}

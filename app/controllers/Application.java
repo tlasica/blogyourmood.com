@@ -69,6 +69,16 @@ public class Application extends Controller {
 		return redirect(routes.Application.showBlog(DEMO_BLOG_LINK));
 	}
 
+	public static Result showPublic(String pubLink) {
+		Blog blog = Blog.findByPublicLink(pubLink);
+		if(null==blog) {
+			return play.mvc.Results.internalServerError("Ooops. Invalid URL. Blog with this id does not exists.");
+		}
+		List<BlogEntry> history = BlogEntry.loadBlogHistoryLimitedEntries(blog, 1);
+		BlogEntry curr = history.isEmpty() ? null : history.get(0);
+		return ok(views.html.publicview.render(blog, curr));		
+	}
+	
 	public static void createDemoBlogIfNotExists() {
 		Blog blog = Blog.findByPrivateLink(DEMO_BLOG_LINK);
 		if (null == blog) {

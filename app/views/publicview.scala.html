@@ -1,0 +1,55 @@
+@(blog: Blog, lastMood: BlogEntry)
+
+@import helper._
+
+@main {
+	
+	<div id="content" class="wrapper doc">
+	
+	<article>
+	
+		<p>This is a public view of mood blog</p>
+		<h1>@blog.label</h1>
+		
+		@if(lastMood!=null) {
+			@if(lastMood.mood == models.Mood.ANGRY) { 
+			<image src="@routes.Assets.at("images/face-angry.jpg")" alt="angry" height=200px />
+			}
+			@if(lastMood.mood == models.Mood.SAD) { 
+			<image src="@routes.Assets.at("images/face-sad.jpg")" alt="sad" height=200px />
+			}
+			@if(lastMood.mood == models.Mood.NORMAL) { 
+			<image src="@routes.Assets.at("images/face-neutral.jpg")" alt="normal" height=200px />
+			}
+			@if(lastMood.mood == models.Mood.HAPPY) { 
+			<image src="@routes.Assets.at("images/face-happy.jpg")" alt="happy" height=200px />
+			}
+			<p>
+			@lastMood.timestampFormatted()</p>
+			<p>@lastMood.notes</p>
+			
+			<p>
+			<small>(this page is not refreshing automatically)</small>
+			</p>
+		}		
+
+	</article>
+	
+	<aside>
+		<h3>Start your mood blog</h3>
+		<ul class = "points">
+		<li>It is free</li>
+		<li>It is anonymous</li>
+		<li>Email is not required</li>		
+		</ul>
+		<p>
+		<nav>
+		<a href="/register" class="button">I want to start</a>
+		</nav>
+		</p>
+		<h3>Demo</h3>
+		Try our <a href="/demo">demo version</a>. 
+
+	</aside>
+
+}
