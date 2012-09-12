@@ -38,7 +38,7 @@ public class BlogEntry extends Model {
 	
 	public String notes;
 		
-	public static Finder<Long,BlogEntry> find = new Finder(Long.class, BlogEntry.class);
+	public static Finder<Long,BlogEntry> find = new Finder<Long, BlogEntry>(Long.class, BlogEntry.class);
 	
 	public BlogEntry(Mood mood) {
 		this.tstamp = DateTime.now();
@@ -72,6 +72,7 @@ public class BlogEntry extends Model {
 	
 	public static List<BlogEntry> loadBlogHistoryForPeriod(Blog blog, LocalDate fromDate, LocalDate toDate) {
 		List<BlogEntry> entries = find.where()
+				.eq("blog", blog)
 				.gt("tstamp", fromDate.minusDays(1))
 				.lt("tstamp", toDate.plusDays(1))
 				.orderBy("tstamp desc")

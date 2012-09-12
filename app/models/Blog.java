@@ -30,6 +30,13 @@ public class Blog extends Model {
 		publicLink = UUID.randomUUID().toString();	
 	}
 	
+	public static Blog createBlogWithGeneratedLinks(String label) {
+		Blog b = new Blog();
+		b.label = label;
+		b.generateLinks();
+		return b;
+	}
+	
 	@Transactional	
 	public static Blog saveNewBlog(Blog blog) {
 		blog.save();
@@ -40,7 +47,7 @@ public class Blog extends Model {
 		find.ref(id).delete();
 	}
 	
-	public static Finder<Long,Blog> find = new Finder(Long.class, Blog.class);
+	public static Finder<Long,Blog> find = new Finder<Long,Blog>(Long.class, Blog.class);
 	
 	public static Blog findByPrivateLink(String privateLink) {
 		List<Blog> res = find.where().eq("privateLink", privateLink).findList();
