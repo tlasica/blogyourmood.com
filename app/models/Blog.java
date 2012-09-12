@@ -7,8 +7,7 @@ import play.db.ebean.*;
 import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
-// TODO: external logic class
-
+@SuppressWarnings("serial")
 @Entity
 public class Blog extends Model {
 

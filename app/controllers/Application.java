@@ -42,7 +42,7 @@ public class Application extends Controller {
 	public static Result showBlog(String privateLink) {
 		return showBlogWithMessage(privateLink, null);
 	}
-
+	
 	public static Result showBlogWithMessage(String privateLink, String message) {
 		Blog blog = Blog.findByPrivateLink(privateLink);
 		if(null==blog) {
@@ -61,7 +61,7 @@ public class Application extends Controller {
 				
 		BlogEntry.saveCurrentMoodInBlog(blogPrivLink, moodName, notes);		
 		String message = "Your mood has been saved";
-		return redirect(routes.Application.showBlogWithMessage(blogPrivLink, message));
+		return showBlogWithMessage(blogPrivLink, message);
 	}
 
 	public static Result demo() {
