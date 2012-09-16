@@ -15,7 +15,7 @@
 		<p>
 		After creation you will get a <b>login link</b>.<br>
 		<p>
-		@form(routes.Application.createBlog(), 'id->"registerForm") {
+		@form(routes.Registration.createBlog(), 'id->"registerForm") {
 			@inputText( blogCreateForm("label"), '_label->"Please label your blog", 'size->30, '_showErrors->true, '_showConstraints->false )
 			<input type="submit" value="Create new blog" class="button">
 		}

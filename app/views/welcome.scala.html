@@ -1,0 +1,37 @@
+@(blog: Blog)
+
+@import helper._
+
+
+@main {
+	
+	<div id="content" class="wrapper doc">
+	
+	<article>
+	
+		<h2>@blog.label</h2>
+		<p>Thank you. Your mood blog has been created. </p>
+		<h3>Login link</h3>
+		<p>
+			We did not ask you to provide any credentials (email, login, password etc.). <br> 
+			For each blog we create an unique <b>login link</b><br>
+			All you need to do, is to <b>save it and keep it safe.</b>
+		</p>
+		<p class="importantParagraph">
+		<a href="/blog/@blog.privateLink">
+		http://blogyourmood.com/blog/@blog.privateLink
+		</a></p>
+		<h3>How can I save my login link ?</h3>
+		<p>
+		Before you proceed to your blog please save your login link.
+		You can do this by:
+		<ul>
+		<li>sending an email with it to yourself
+		<li>bookmarking the link in your browser
+		<li>saving the link in delicious, evernote, heapnote or any other Internet service
+		</ul>
+		</p>
+		<a href="/blog/@blog.privateLink">continue, go to my blog</a>
+	</article>
+	
+}

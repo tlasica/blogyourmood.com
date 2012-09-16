@@ -4,14 +4,19 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET		/register					controllers.Application.register()
-POST	/register					controllers.Application.createBlog()
 GET		/blog/:id					controllers.Application.showBlog(id)
 POST	/blog/:id/status			controllers.Application.addStatus(id)
-GET		/demo						controllers.Application.demo()
+
+GET		/demo						controllers.DemoBlog.demo()
+
 GET		/blog/:id/timechart/:days	controllers.Charts.timechart(id,days)
 GET		/blog/:id/histogram/:days	controllers.Charts.histogram(id,days)
 GET		/blog/:id/calendar/:period	controllers.Charts.calendar(id,period)
+
+GET		/register					controllers.Registration.showRegisterPage()
+POST	/register					controllers.Registration.createBlog()
+GET		/welcome/:id				controllers.Registration.showWelcomeBlogPage(id)
+
 
 GET		/public/:id					controllers.Application.showPublic(id)
 
