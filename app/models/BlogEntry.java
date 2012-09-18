@@ -13,9 +13,11 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 import play.db.ebean.Model;
 import play.db.ebean.Transactional;
@@ -24,6 +26,7 @@ import play.db.ebean.Transactional;
 @Entity
 public class BlogEntry extends Model {
 
+	private static final DateTimeFormatter ISO_FORMAT = ISODateTimeFormat.basicDateTime();
 	private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormat.forPattern("E dd MMMM HH:mm");
 	private static final DateTimeFormatter TIME_FORMAT = DateTimeFormat.forPattern("HH:mm");
 	
@@ -31,7 +34,7 @@ public class BlogEntry extends Model {
 	public Long 	id;
 	
 	@ManyToOne(cascade=CascadeType.REMOVE)
-	public Blog	blog;
+	public Blog	 blog;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -49,8 +52,8 @@ public class BlogEntry extends Model {
 		this.mood = mood;
 	}
 	
-	public String timestampFormatted() {
-		return tstamp.toString(DATETIME_FORMAT);
+	public String timestampLocalStr(DateTimeZone zone) {
+		return tstamp.toString( DATETIME_FORMAT.withZone(zone) );
 	}
 	
 	public String timeStr() {

@@ -7,6 +7,8 @@ import play.db.ebean.*;
 import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
+import org.joda.time.DateTimeZone;
+
 @SuppressWarnings("serial")
 @Entity
 public class Blog extends Model {
@@ -23,6 +25,11 @@ public class Blog extends Model {
 	
 	@Column(unique=true)
 	public String publicLink;	
+	
+	// TODO: impement based on data stored in db
+	public DateTimeZone getTimeZone() {
+		return DateTimeZone.forID("Europe/Warsaw");
+	}
 	
 	public void generateLinks() {
 		privateLink = UUID.randomUUID().toString();
