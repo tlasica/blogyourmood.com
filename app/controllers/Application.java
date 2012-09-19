@@ -25,29 +25,39 @@ public class Application extends Controller {
 	
 	public static Result showBlog(String privateLink) {
 		return showBlogWithMessage(privateLink, null);
-	}
+	}	
 	
 	public static Result showBlogWithMessage(String privateLink, String message) {
 		Blog blog = Blog.findByPrivateLink(privateLink);
 		if(null==blog) {
 			return play.mvc.Results.internalServerError("Ooops. Invalid URL. Blog with this id does not exists.");
 		}
-		List<BlogEntry> blogHistory = null;
-		blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);
-		return ok(views.html.blog.render(blog, blogHistory, moodForm, message));		
+		List<BlogEntry> blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);
+		return ok(views.html.blog.render(blog, blogHistory, moodForm, message));
 	}
 	
 	public static Result addStatus(String blogPrivLink) {
-		DynamicForm form = form().bindFromRequest();
-		String notes = form.get("notes");
-		String moodName = form.get("CHOOSEN_MOOD");
-				
-		BlogEntry.saveCurrentMoodInBlog(blogPrivLink, moodName, notes);		
-		String message = "Your mood has been saved";
-		return showBlogWithMessage(blogPrivLink, message);
+		Form<BlogEntry> bindEntryForm = moodForm.bindFromRequest();
+		if (bindEntryForm.hasErrors()) {
+			Blog blog = Blog.findByPrivateLink(blogPrivLink);
+			if(null==blog) {
+				return play.mvc.Results.internalServerError("Ooops. Invalid URL. Blog with this id does not exists.");
+			}
+			List<BlogEntry> blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);			
+			return badRequest(views.html.blog.render(blog, blogHistory, bindEntryForm, null));
+		}
+		else {		
+			DynamicForm form = form().bindFromRequest();		
+			String notes = form.get("notes");
+			String moodName = form.get("CHOOSEN_MOOD");
+					
+			BlogEntry.saveCurrentMoodInBlog(blogPrivLink, moodName, notes);		
+			String message = "Your mood has been saved";
+			return showBlogWithMessage(blogPrivLink, message);
+		}
 	}
 
-
+	
 	public static Result showPublic(String pubLink) {
 		Blog blog = Blog.findByPublicLink(pubLink);
 		if(null==blog) {

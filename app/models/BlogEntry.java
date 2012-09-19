@@ -19,6 +19,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
+import play.data.validation.Constraints.MaxLength;
 import play.db.ebean.Model;
 import play.db.ebean.Transactional;
 
@@ -43,6 +44,7 @@ public class BlogEntry extends Model {
 	@Temporal(TemporalType.TIMESTAMP)
 	public DateTime	tstamp;
 	
+	@MaxLength(200)
 	public String notes;
 		
 	public static Finder<Long,BlogEntry> find = new Finder<Long, BlogEntry>(Long.class, BlogEntry.class);

@@ -15,7 +15,7 @@
 		<p>What is your mood now ? <small>make a short description and choose emoticon</small></p>		
 		<div id="moods">
 		@form(routes.Application.addStatus(blog.privateLink), 'id->"MOOD_FORM") {
-			@inputText( moodForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->63, '_showErrors->true, '_showConstraints->false )
+			@inputText( moodForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->63, '_showErrors->true, '_showConstraints->true )
 			<input type="hidden" id="HIDDEN_MOOD_INPUT" name="CHOOSEN_MOOD" val=""/>
 		}
 
