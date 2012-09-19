@@ -16,8 +16,12 @@
 		<div id="moods">
 		@form(routes.Application.addStatus(blog.privateLink), 'id->"MOOD_FORM") {
 			@inputText( moodForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->63, '_showErrors->true, '_showConstraints->true )
-			<input type="hidden" id="HIDDEN_MOOD_INPUT" name="CHOOSEN_MOOD" val=""/>
+			<input type="hidden" id="HIDDEN_MOOD_INPUT" name="CHOOSEN_MOOD" val=""/>			
+			@defining(moodForm("mood")) { moodField =>
+  				<input type="hidden" name="@moodField.name" id="moodField" value="@moodField.value">
+			}
 		}
+		
 
 		<a href="#" class="MOOD_OPTION" value="happy">
 			<img src="@routes.Assets.at("images/face-happy.jpg")" alt="happy" width=150px />
@@ -86,6 +90,7 @@
 	$(".MOOD_OPTION").click(function() {
 		var moodName = $(this).attr("value");
 		$("#HIDDEN_MOOD_INPUT").val(moodName);
+		$("#moodField").val("HAPPY")
 		$("#MOOD_FORM").submit();
 	});
 	</script>

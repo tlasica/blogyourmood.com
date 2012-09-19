@@ -1,6 +1,10 @@
 package controllers;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+
 import models.Blog;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -19,11 +23,13 @@ public class Registration extends Controller {
 		if (form.hasErrors()) {
 			return badRequest(register.render(form));
 		} else {
-			Blog blog = form.get();
+			String timezoneStr = form().bindFromRequest().get("TIMEZONE");
+			Blog blog = form.get();			
+			blog.timezone = timezoneStr;
+			blog.createdOn = DateTime.now(DateTimeZone.forID(blog.timezone)); 
 			blog.generateLinks();
 			blog = Blog.saveNewBlog(blog);
 			return redirect(routes.Registration.showWelcomeBlogPage(blog.privateLink));
-			// return redirect(routes.Application.showBlog(blog.privateLink));
 		}
 	}
 

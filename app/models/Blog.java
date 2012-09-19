@@ -7,6 +7,7 @@ import play.db.ebean.*;
 import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
+import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 @SuppressWarnings("serial")
@@ -24,11 +25,20 @@ public class Blog extends Model {
 	public String privateLink;
 	
 	@Column(unique=true)
-	public String publicLink;	
+	public String publicLink;
+
+	public String timezone ;
+	
+	public DateTime createdOn = DateTime.now();
 	
 	// TODO: impement based on data stored in db
 	public DateTimeZone getTimeZone() {
-		return DateTimeZone.forID("Europe/Warsaw");
+		if (timezone != null ) {
+			return DateTimeZone.forID(timezone);
+		}
+		else {
+			return DateTimeZone.forID("Europe/Warsaw");
+		}
 	}
 	
 	public void generateLinks() {

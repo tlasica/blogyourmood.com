@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Blog;
 import models.BlogEntry;
+import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -43,7 +44,9 @@ public class Application extends Controller {
 			if(null==blog) {
 				return play.mvc.Results.internalServerError("Ooops. Invalid URL. Blog with this id does not exists.");
 			}
-			List<BlogEntry> blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);			
+			List<BlogEntry> blogHistory = BlogEntry.loadBlogHistoryLimitedEntries(blog, DEF_HISTORY_LIMIT);
+			Logger.error("Bad request when addingStatus");
+			Logger.error(bindEntryForm.errors().toString());
 			return badRequest(views.html.blog.render(blog, blogHistory, bindEntryForm, null));
 		}
 		else {		
