@@ -3,6 +3,7 @@ package commons;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
@@ -45,5 +46,13 @@ public class DateTimeHelper {
 		return dates;
 	}
 	
+	public List<DateMidnight> lastNumDateMidnight(DateTime now, int numDays) {
+		List<DateMidnight> days = new ArrayList<DateMidnight>();
+		for (int i = 0; i < numDays; i++) {
+			DateMidnight d = new DateMidnight(now.minusDays(i));
+			days.add(d);
+		}
+		return days;
+	}
 
 }
