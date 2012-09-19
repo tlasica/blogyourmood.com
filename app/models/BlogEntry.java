@@ -56,8 +56,8 @@ public class BlogEntry extends Model {
 		return tstamp.toString( DATETIME_FORMAT.withZone(zone) );
 	}
 	
-	public String timeStr() {
-		return tstamp.toString(TIME_FORMAT);
+	public String timeStr(DateTimeZone zone) {
+		return tstamp.toString( TIME_FORMAT.withZone(zone) );
 	}
 	
 	@Transactional

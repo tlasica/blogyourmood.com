@@ -26,7 +26,7 @@
 				@if(mood.mood == models.Mood.HAPPY) { 
 					<image src="@routes.Assets.at("images/face-happy-small.jpg")" height=16/>
 				}
-				 @mood.timeStr() @if(mood.notes) {@mood.notes}
+				 @mood.timeStr(blog.getTimeZone()) @if(mood.notes) {@mood.notes}
 				</p>
 			}
 			<hr>
