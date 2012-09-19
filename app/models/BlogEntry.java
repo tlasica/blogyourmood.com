@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
+import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -70,6 +71,17 @@ public class BlogEntry extends Model {
 		entry.notes = notes;
 		entry.save();		
 	}
+
+	
+	public static void saveTestEntry(Blog blog, String status, String notes, String isoDateTime) {
+		BlogEntry entry = new BlogEntry( Mood.fromString(status) );
+		entry.blog = blog;
+		entry.notes = notes;
+		entry.tstamp = DateTime.parse(isoDateTime, 
+				ISODateTimeFormat.basicDateTimeNoMillis().withZone(DateTimeZone.forID(blog.timezone)));
+		entry.save();				
+	}
+	
 	
 	public static List<BlogEntry> loadBlogHistoryLimitedEntries(Blog blog, int limitEntries) {
 		List<BlogEntry> entries = find.where()
@@ -84,6 +96,16 @@ public class BlogEntry extends Model {
 				.eq("blog", blog)
 				.gt("tstamp", fromDate.minusDays(1))
 				.lt("tstamp", toDate.plusDays(1))
+				.orderBy("tstamp desc")
+				.findList();
+		return entries;
+	}
+
+	public static List<BlogEntry> loadBlogHistoryForPeriod(Blog blog, DateTime fromDT, DateTime toDT) {
+		List<BlogEntry> entries = find.where()
+				.eq("blog", blog)
+				.gt("tstamp", fromDT)
+				.lt("tstamp", toDT)
 				.orderBy("tstamp desc")
 				.findList();
 		return entries;

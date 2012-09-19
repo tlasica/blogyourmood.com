@@ -17,7 +17,7 @@ public class BlogDatabaseTest {
 	public void blogIsAccesibleByPublicLink() {
 		running(fakeApplication(inMemoryDatabase()), new Runnable() {
 			public void run() {
-				Blog blog = Blog.createBlogWithGeneratedLinks("test blog");
+				Blog blog = Blog.createTestBlog("test blog");
 				Blog.saveNewBlog(blog);
 				Blog loaded = Blog.findByPublicLink(blog.publicLink);
 				assertThat(loaded).isNotNull();

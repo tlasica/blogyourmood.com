@@ -10,7 +10,7 @@ public class BlogTest {
 
 	@Test
 	public void publicLinkIsDifferentFromPrivate() {
-		Blog a = Blog.createBlogWithGeneratedLinks("test blog");
+		Blog a = Blog.createTestBlog("test blog");
 		a.generateLinks();
 		assertFalse( a.privateLink == a.publicLink);
 	}

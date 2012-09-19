@@ -46,10 +46,16 @@ public class Blog extends Model {
 		publicLink = UUID.randomUUID().toString();	
 	}
 	
-	public static Blog createBlogWithGeneratedLinks(String label) {
+	public static Blog createTestBlog(String label) {
 		Blog b = new Blog();
 		b.label = label;
 		b.generateLinks();
+		return b;
+	}
+
+	public static Blog createTestBlogWithTimeZone(String label, String timezoneID) {
+		Blog b = createTestBlog(label);
+		b.timezone = timezoneID;
 		return b;
 	}
 	
