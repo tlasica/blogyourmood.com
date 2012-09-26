@@ -9,6 +9,8 @@ import models.Blog;
 import models.BlogEntry;
 import models.CalendarEntry;
 
+import org.joda.time.DateMidnight;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
@@ -43,7 +45,7 @@ public class Charts extends Controller {
 	}
 
 	private static List<CalendarEntry> buildCalendar(Blog blog, int numDays) {
-		LocalDate now = new LocalDate();
+		DateTime now = new DateTime().withZone(blog.getTimeZone());
 		DateTimeFormatter format = DateTimeFormat.fullDate();
 		Map<LocalDate, List<BlogEntry>> historyPerDay = loadBlogHistoryPerDay(blog, now, numDays);
 		List<CalendarEntry> res = new ArrayList<CalendarEntry>();
@@ -59,12 +61,13 @@ public class Charts extends Controller {
 		return res;
 	}
 
-	private static Map<LocalDate, List<BlogEntry>> loadBlogHistoryPerDay(
-			Blog blog, LocalDate now, int numDays) {
+	private static Map<LocalDate, List<BlogEntry>> 
+	loadBlogHistoryPerDay( Blog blog, DateTime now, int numDays) {
+		DateTime fromDate = new DateMidnight( now.minusDays(numDays-1)).toDateTime();		
+		List<BlogEntry> moodHistory = BlogEntry.loadBlogHistoryForPeriod(blog, fromDate, now);		
 		Map<LocalDate, List<BlogEntry>> res = new HashMap<LocalDate, List<BlogEntry>>();
-		List<BlogEntry> moodHistory = BlogEntry.loadBlogHistoryForPeriod(blog, now.minusDays(numDays), now); 
-		for (BlogEntry m : moodHistory) {
-			LocalDate day = m.tstamp.toLocalDate();
+		for (BlogEntry m : moodHistory) {	// tstamps are in UTC
+			LocalDate day = m.tstamp.withZone(blog.getTimeZone()).toLocalDate();
 			if (!res.containsKey(day)) {
 				res.put(day, new ArrayList<BlogEntry>());
 			}

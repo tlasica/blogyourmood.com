@@ -35,12 +35,12 @@ public class DateTimeHelper {
 		DateTimeFormatter format = ISODateTimeFormat.basicDateTimeNoMillis().withZone(tz);
 		return DateTime.parse(iso, format); 		
 	}
-	
-	
-	public List<LocalDate> listOfLastNDays(LocalDate now, int numDays) {
+		
+
+	public List<LocalDate> listOfLastNDays(DateTime now, int numDays) {
 		List<LocalDate> dates = new ArrayList<LocalDate>();
 		for (int i = 0; i < numDays; i++) {
-			LocalDate d = now.minusDays(i);
+			LocalDate d = now.minusDays(i).toLocalDate();
 			dates.add(d);
 		}
 		return dates;
@@ -54,5 +54,5 @@ public class DateTimeHelper {
 		}
 		return days;
 	}
-
+	
 }
