@@ -43,7 +43,7 @@ article p.note{padding:15px 20px;}
 article table{width:100%;}article table td{padding:8px;}
 article table tr{background:#F4F4F7;border-bottom:1px solid #eee;}
 article table tr:nth-of-type(odd){background:#fafafa;}
-a{color:#67a932;}a:hover{color:#80c846;}
+a{color:#67a932;}a:hover{color:#483D8B;}
 p{margin:1em 0;}
 h1{-webkit-font-smoothing:antialiased;}
 h2{font-weight:bold;font-size:28px;}
@@ -139,3 +139,5 @@ input.moodButton:hover{box-shadow:0 3px 0 #6dae38,0 3px 4px rgba(0, 0, 0, 0.3);}
 input.moodButton:active{box-shadow:0 1px 0 #6dae38;top:2px;-webkit-transition:none;}
 
 a.MOOD_OPTION{color:white;}
+
+p.blogHistory{margin: 3px 0px; line-height: 0.8em;}
