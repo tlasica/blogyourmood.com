@@ -8,6 +8,8 @@ import java.util.Map;
 import models.Blog;
 import models.BlogEntry;
 import models.CalendarEntry;
+import models.Mood;
+import models.StatsEntry;
 
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
@@ -44,6 +46,40 @@ public class Charts extends Controller {
 		return ok(views.html.calendar.render(blog, calendar, durationStr));
 	}
 
+	
+	public static Result stats(String blogPrivLink, String numDays) {
+		int days = Integer.valueOf(numDays);
+		Blog blog = Blog.findByPrivateLink(blogPrivLink);
+		if(null==blog) {
+			return play.mvc.Results.internalServerError("Ooops. Invalid URL. Blog with this id does not exists.");
+		}
+		List<StatsEntry> stats = buildStats(blog, days); 
+		String durationStr = DTHELPER.durationString(days);
+		return ok(views.html.stats.render(blog, stats, durationStr));
+	}
+	
+	
+	private static List<StatsEntry> buildStats(Blog blog, int numDays) {
+		Map<Mood, StatsEntry> moodCounters = new HashMap<Mood, StatsEntry>();
+		for(Mood m : Mood.values()) {
+			moodCounters.put(m, new StatsEntry(m,0L));			
+		}
+		
+		long total = 0;
+		List<BlogEntry> history = loadBlogHistoryFromNow(blog, numDays);
+		for(BlogEntry e: history) {
+			moodCounters.get(e.mood).count++;
+			total++;
+		}			
+		
+		List<StatsEntry> stats = new ArrayList<StatsEntry>();
+		stats.add( moodCounters.get(Mood.HAPPY).withUpdatedPercent(total));
+		stats.add( moodCounters.get(Mood.NORMAL).withUpdatedPercent(total));
+		stats.add( moodCounters.get(Mood.SAD).withUpdatedPercent(total));
+		stats.add( moodCounters.get(Mood.ANGRY).withUpdatedPercent(total));
+		return stats;		
+	}
+
 	private static List<CalendarEntry> buildCalendar(Blog blog, int numDays) {
 		DateTime now = new DateTime().withZone(blog.getTimeZone());
 		DateTimeFormatter format = DateTimeFormat.fullDate();
@@ -63,8 +99,7 @@ public class Charts extends Controller {
 
 	private static Map<LocalDate, List<BlogEntry>> 
 	loadBlogHistoryPerDay( Blog blog, DateTime now, int numDays) {
-		DateTime fromDate = new DateMidnight( now.minusDays(numDays-1)).toDateTime();		
-		List<BlogEntry> moodHistory = BlogEntry.loadBlogHistoryForPeriod(blog, fromDate, now);		
+		List<BlogEntry> moodHistory = loadBlogHistoryFromNow(blog, numDays);		
 		Map<LocalDate, List<BlogEntry>> res = new HashMap<LocalDate, List<BlogEntry>>();
 		for (BlogEntry m : moodHistory) {	// tstamps are in UTC
 			LocalDate day = m.tstamp.withZone(blog.getTimeZone()).toLocalDate();
@@ -74,5 +109,11 @@ public class Charts extends Controller {
 			res.get(day).add(m);
 		}
 		return res;
+	}
+	
+	private static List<BlogEntry> loadBlogHistoryFromNow(Blog blog, int numDays) {
+		DateTime now = new DateTime().withZone(blog.getTimeZone());
+		DateTime fromDate = new DateMidnight( now.minusDays(numDays-1)).toDateTime();		
+		return BlogEntry.loadBlogHistoryForPeriod(blog, fromDate, now);				
 	}
 }

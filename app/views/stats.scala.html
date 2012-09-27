@@ -1,0 +1,52 @@
+@(blog: Blog, stats: List[StatsEntry], period:String)
+@main {
+	<div id="content" class="wrapper doc">
+	
+	<article>
+		<h1>@blog.label</h1>
+		<p>Your mood statistics for @period:</p>
+
+		@for(se <- stats) {
+			<p class="statsRow">
+				@if(se.mood == models.Mood.ANGRY) { 
+					<image src="@routes.Assets.at("images/face-angry.jpg")" height=40/>
+				}
+				@if(se.mood == models.Mood.SAD) { 
+					<image src="@routes.Assets.at("images/face-sad.jpg")" height=40/>
+				}
+				@if(se.mood == models.Mood.NORMAL) { 
+					<image src="@routes.Assets.at("images/face-neutral.jpg")" height=40/>
+				}
+				@if(se.mood == models.Mood.HAPPY) { 
+					<image src="@routes.Assets.at("images/face-happy.jpg")" height=40/>
+				}			
+			I was @se.mood	<b>@se.count</b> time(s) which is <b>@se.percent%</b>
+			</p>
+		}
+			
+	</article>
+	
+	<aside>
+	<p>
+	<a href="/blog/@blog.privateLink">HOME</a><br>
+	<small>go back to the blog</small>
+	</p>
+
+	<h3>Set period</h3>
+	<small>choose 7, 14, 30 or 60 days from now</small>
+	<p>
+	<a href="/blog/@blog.privateLink/stats/7">a week</a>
+	</p>
+	<p>
+	<a href="/blog/@blog.privateLink/stats/14">two weeks</a>
+	</p>
+	<p>
+	<a href="/blog/@blog.privateLink/stats/30">one month</a>
+	</p>
+	<p>
+	<a href="/blog/@blog.privateLink/stats/60">two months</a>
+	</p>
+	</aside>
+	
+	</div>
+}
