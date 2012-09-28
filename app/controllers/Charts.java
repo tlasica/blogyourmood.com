@@ -68,8 +68,10 @@ public class Charts extends Controller {
 		long total = 0;
 		List<BlogEntry> history = loadBlogHistoryFromNow(blog, numDays);
 		for(BlogEntry e: history) {
-			moodCounters.get(e.mood).count++;
-			total++;
+			if (e.mood != null) {
+				moodCounters.get(e.mood).count++;
+				total++;
+			}
 		}			
 		
 		List<StatsEntry> stats = new ArrayList<StatsEntry>();

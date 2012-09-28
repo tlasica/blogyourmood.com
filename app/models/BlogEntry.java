@@ -10,17 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
-import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
 import play.data.validation.Constraints.MaxLength;
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Transactional;
 
@@ -38,7 +38,7 @@ public class BlogEntry extends Model {
 	@ManyToOne(cascade=CascadeType.REMOVE)
 	public Blog	 blog;
 	
-	@NotNull
+	@Required
 	@Enumerated(EnumType.STRING)
 	public Mood	 mood;
 	
