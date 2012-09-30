@@ -4,7 +4,10 @@
 	
 	<article>
 		<h1>@blog.label</h1>
-		<p>Your mood statistics for @period:</p>
+		<p>
+			Your mood statistics for @period:<br>
+			<small>@stats.size() posts have been made in this period</small>
+		</p>
 
 		@for(se <- stats) {
 			<p class="statsRow">
@@ -19,11 +22,14 @@
 				}
 				@if(se.mood == models.Mood.HAPPY) { 
 					<image src="@routes.Assets.at("images/face-happy.jpg")" height=40/>
-				}			
-			I was @se.mood	<b>@se.count</b> time(s) which is <b>@se.percent%</b>
+				}
+				
+			I was @se.mood	<b>@se.count</b> time(s)
+			@if(se.count>0) {
+			 	 => about <b>@math.round(se.percent)%</b>
+			 }
 			</p>
 		}
-			
 	</article>
 	
 	<aside>

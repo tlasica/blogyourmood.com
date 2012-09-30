@@ -15,4 +15,8 @@ public class StatsEntry {
 		percent = ( 100.0 * count ) / (double) total;
 		return this;
 	}
+	
+	public String percentStr() {
+		return String.format("%.2f", percent);
+	}
 }
