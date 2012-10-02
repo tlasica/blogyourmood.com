@@ -23,6 +23,9 @@ public class Application extends Controller {
 		return ok(index.render("Your new application is ready."));
 	}
 
+	public static Result features() {
+		return ok(views.html.features.render());
+	}
 	
 	public static Result showBlog(String privateLink) {
 		return showBlogWithMessage(privateLink, null);
