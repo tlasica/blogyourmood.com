@@ -11,18 +11,18 @@
 		@for(se <- stats) {
 			<p class="statsRow">
 				@if(se.mood == models.Mood.ANGRY) { 
-					<image src="@routes.Assets.at("images/face-angry.jpg")" height=40/>
+					<image src="@routes.Assets.at("images/face-angry.jpg")" align="left" height=80/>
 				}
 				@if(se.mood == models.Mood.SAD) { 
-					<image src="@routes.Assets.at("images/face-sad.jpg")" height=40/>
+					<image src="@routes.Assets.at("images/face-sad.jpg")" align="left" height=80/>
 				}
 				@if(se.mood == models.Mood.NORMAL) { 
-					<image src="@routes.Assets.at("images/face-neutral.jpg")" height=40/>
+					<image src="@routes.Assets.at("images/face-neutral.jpg")" align="left" height=80/>
 				}
 				@if(se.mood == models.Mood.HAPPY) { 
-					<image src="@routes.Assets.at("images/face-happy.jpg")" height=40/>
+					<image src="@routes.Assets.at("images/face-happy.jpg")" align="left" height=80/>
 				}
-				
+			<br>
 			I was @se.mood	<b>@se.count</b> time(s)
 			@if(se.count>0) {
 			 	 => about <b>@math.round(se.percent)%</b>
