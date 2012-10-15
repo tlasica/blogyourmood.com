@@ -1,0 +1,16 @@
+@(activeBlogs: List[ActiveBlog])
+
+@main(showAddThis=false) {
+
+	<div id="content" class="wrapper doc">
+	
+	<article>
+		<h2>@activeBlogs.size() active blogs</h2>
+		<p>
+		@for(blog <- activeBlogs) {
+			@blog.label with @blog.numEntries in last 5d<br>
+		}		
+	</article>
+	
+	</div>
+}
