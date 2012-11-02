@@ -2,11 +2,14 @@ package controllers;
 
 import java.util.List;
 
+import org.codehaus.jackson.node.ObjectNode;
+
 import models.Blog;
 import models.BlogEntry;
 import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
@@ -75,4 +78,19 @@ public class Application extends Controller {
 	}
 	
 
+	public static Result manifest() {
+		ObjectNode result = Json.newObject();
+		result.put("name", "Mood Blog");
+		result.put("description", "Mood Blog is simple and light service which allows to track your happiness index by recording your emotions.");
+		result.put("launch_path", "/");
+		ObjectNode iconsInfo = Json.newObject();
+		iconsInfo.put("128","/assets/images/icon_128.png");
+		result.put("icons", iconsInfo);
+		ObjectNode devInfo = Json.newObject();
+		devInfo.put("name", "tlasica");
+		devInfo.put("url", "www.3kawki.pl");
+		result.put("developer", devInfo);
+		result.put("default_locale", "en");
+		return ok(result);
+	}
 }
