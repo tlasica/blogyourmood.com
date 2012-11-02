@@ -88,9 +88,9 @@ public class Application extends Controller {
 		result.put("icons", iconsInfo);
 		ObjectNode devInfo = Json.newObject();
 		devInfo.put("name", "tlasica");
-		devInfo.put("url", "www.3kawki.pl");
+		devInfo.put("url", "http://www.3kawki.pl");
 		result.put("developer", devInfo);
 		result.put("default_locale", "en");
-		return ok(result);
+		return ok(result).as("application/x-web-app-manifest+json");
 	}
 }
