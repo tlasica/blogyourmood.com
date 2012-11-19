@@ -3,7 +3,7 @@
 # Java applications with deep visibility and low overhead.  For more
 # information, visit www.newrelic.com.
 #
-# <%= generated_for_user %>
+# This configuration file is custom generated for ancient-springs-2360 Heroku
 #
 # This section is for settings common to all environments.
 # Do not add anything above this next line.
@@ -14,7 +14,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: '<%= license_key %>'
+  license_key: 'fec63e7ace613e0687b948a1aafe2f3f331ea0a5'
   
   # Agent Enabled
   # Use this setting to force the agent to run or not run.
@@ -183,13 +183,6 @@ common: &default_settings
     # When this property is commented out it defaults to ignoring 404s.
     #
     # ignore_status_codes: 404
-
-    # Report a stall error if the transaction has not finished and lasted longer than the threshold.
-    # A transaction is checked every minute.
-    # Only one error is reported per transaction.
-    # Default is 300 seconds (5 minutes).
-    #
-    # stall_threshold: 300.0
 
   # Thread profiler measures wall clock time, CPU time, and method call counts
   # in your application's threads as they run.

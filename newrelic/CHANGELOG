@@ -1,5 +1,13 @@
+v2.10.1
+  * Remove stall detection
+v2.10.0
+  * XML-based custom instrumentation
+  * Support Servlet 3.0 async API
+  * Request attribute for setting app name should allow multiple app names
+  * bug fix: auto RUM inserts header and footer into script tags
 v2.9.0
   * Support Key Transactions feature
+  * More metrics available in Custom Dashboards
 v2.8.0
   * Supports basic proxy authentication for the case where there is a proxy server between the agent and the Internet. 
     The configuration uses proxy_user and proxy_password settings.
