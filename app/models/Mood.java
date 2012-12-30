@@ -16,6 +16,7 @@ public enum Mood {
 		return STRINGTOENUMMAP.get(status);
 	}
 	
+	@SuppressWarnings("serial")
 	public static final Map<String,Mood> STRINGTOENUMMAP = 
 			Collections.unmodifiableMap(
                     new HashMap<String, Mood>() {

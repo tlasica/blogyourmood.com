@@ -31,7 +31,6 @@ public class Blog extends Model {
 	
 	public DateTime createdOn = DateTime.now();
 	
-	// TODO: impement based on data stored in db
 	public DateTimeZone getTimeZone() {
 		if (timezone != null ) {
 			return DateTimeZone.forID(timezone);
@@ -73,22 +72,12 @@ public class Blog extends Model {
 	
 	public static Blog findByPrivateLink(String privateLink) {
 		List<Blog> res = find.where().eq("privateLink", privateLink).findList();
-		if (res!=null && !res.isEmpty() ) {
-			return res.get(0);
-		}
-		else {
-			return null;
-		}
+		return (res!=null && !res.isEmpty() ) ? res.get(0) : null;
 	}
 
 	public static Blog findByPublicLink(String publicLink) {
 		List<Blog> res = find.where().eq("publicLink", publicLink).findList();
-		if (res!=null && !res.isEmpty() ) {
-			return res.get(0);
-		}
-		else {
-			return null;
-		}
+		return (res!=null && !res.isEmpty() ) ? res.get(0) : null;
 	}
 
 }

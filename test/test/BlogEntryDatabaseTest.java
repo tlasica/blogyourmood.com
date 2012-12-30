@@ -1,18 +1,18 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.fest.assertions.Assertions.assertThat;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.running;
 
 import java.util.List;
 
-import play.test.*;
-import static play.test.Helpers.*;
-import static org.fest.assertions.Assertions.*;
 import models.Blog;
 import models.BlogEntry;
 import models.Mood;
 
+import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.junit.Test;
 
 import commons.DateTimeHelper;
@@ -48,14 +48,18 @@ public class BlogEntryDatabaseTest {
 	}
 
 
+	private Blog saveTestBlog(String name) {
+		Blog blog = Blog.createTestBlog("test blog 1");
+		Blog.saveNewBlog(blog);
+		return blog;
+	}
+	
 	@Test
 	public void blogHistoryLimitedContainsOnlyOneBlog() {
 		running(fakeApplication(inMemoryDatabase()), new Runnable() {
-			public void run() {
-				Blog blog1 = Blog.createTestBlog("test blog 1");
-				Blog.saveNewBlog(blog1);
-				Blog blog2 = Blog.createTestBlog("test blog 2");
-				Blog.saveNewBlog(blog2);
+			public void run() {				
+				Blog blog1 = saveTestBlog("test blog 1");
+				Blog blog2 = saveTestBlog("test blog 2");
 				BlogEntry.saveCurrentMoodInBlog(blog1.privateLink, "happy", "some notes 1");
 				BlogEntry.saveCurrentMoodInBlog(blog2.privateLink, "sad", "some notes 2");
 				List<BlogEntry> history = BlogEntry.loadBlogHistoryLimitedEntries(blog1, 100);
@@ -71,13 +75,15 @@ public class BlogEntryDatabaseTest {
 	public void blogHistoryPeriodContainsOnlyOneBlog() {
 		running(fakeApplication(inMemoryDatabase()), new Runnable() {
 			public void run() {
-				Blog blog1 = Blog.createTestBlog("test blog 1");
-				Blog.saveNewBlog(blog1);
-				Blog blog2 = Blog.createTestBlog("test blog 2");
-				Blog.saveNewBlog(blog2);
+				// create test blogs
+				Blog blog1 = saveTestBlog("test blog 1");
+				Blog blog2 = saveTestBlog("test blog 2");
 				BlogEntry.saveCurrentMoodInBlog(blog1.privateLink, "happy", "some notes 1");
 				BlogEntry.saveCurrentMoodInBlog(blog2.privateLink, "sad", "some notes 2");
-				List<BlogEntry> history = BlogEntry.loadBlogHistoryForPeriod(blog1, LocalDate.now(), LocalDate.now());
+				// create dates: now and -5d
+				DateTime now = new DateTime().withZone(blog1.getTimeZone());
+				DateTime fiveDaysAgo = new DateMidnight( now.minusDays(5)).toDateTime();		
+				List<BlogEntry> history = BlogEntry.loadBlogHistoryForPeriod(blog1, fiveDaysAgo, now);
 				assertThat(history.size()).isEqualTo(1);
 				assertThat(history.get(0).mood).isEqualTo(Mood.HAPPY);
 				assertThat(history.get(0).notes).isEqualTo("some notes 1");
