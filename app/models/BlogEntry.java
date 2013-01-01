@@ -1,6 +1,8 @@
 package models;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,6 +23,10 @@ import play.data.validation.Constraints.MaxLength;
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 import play.db.ebean.Transactional;
+
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.SqlQuery;
+import com.avaje.ebean.SqlRow;
 
 @SuppressWarnings("serial")
 @Entity
@@ -88,6 +94,24 @@ public class BlogEntry extends Model {
 		return entries;
 	}
 	
+	public static Map<Mood,Integer> loadMoodGroupedByForPeriod(Blog blog, DateTime fromDT, DateTime toDT) {
+		// run query
+		String sql = "select mood, count(1) as cnt from blog_entry where blog_id=:blogId and tstamp>=:fromDT and tstamp<=:toDT group by mood";
+		SqlQuery query = Ebean.createSqlQuery(sql)
+			.setParameter("blogId", blog.id)
+			.setParameter("fromDT", fromDT)
+			.setParameter("toDT", toDT);
+		List<SqlRow> rows =	query.findList();
+		// parse result and build return
+		Map<Mood,Integer> map = new HashMap<Mood, Integer>();
+		for(SqlRow row : rows) {
+			String moodStr = row.getString("mood");
+			Integer count = row.getInteger("cnt");
+			map.put(Mood.fromString(moodStr), count);
+		}
+		return map;
+	}
+	
 	//
 	// TEST HELPERS
 	//
@@ -100,5 +124,6 @@ public class BlogEntry extends Model {
 				ISODateTimeFormat.basicDateTimeNoMillis().withZone(DateTimeZone.forID(blog.timezone)));
 		entry.save();				
 	}
+	
 	
 }

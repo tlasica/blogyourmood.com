@@ -6,6 +6,7 @@ import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.running;
 
 import java.util.List;
+import java.util.Map;
 
 import models.Blog;
 import models.BlogEntry;
@@ -19,6 +20,8 @@ import commons.DateTimeHelper;
 
 public class BlogEntryDatabaseTest {
 
+	private DateTimeHelper dtHelper = new DateTimeHelper();
+	
 	@Test
 	public void noEntriesAfterBlogCreation() {
 		running(fakeApplication(inMemoryDatabase()), new Runnable() {
@@ -81,8 +84,8 @@ public class BlogEntryDatabaseTest {
 				BlogEntry.saveCurrentMoodInBlog(blog1.privateLink, "happy", "some notes 1");
 				BlogEntry.saveCurrentMoodInBlog(blog2.privateLink, "sad", "some notes 2");
 				// create dates: now and -5d
-				DateTime now = new DateTime().withZone(blog1.getTimeZone());
-				DateTime fiveDaysAgo = new DateMidnight( now.minusDays(5)).toDateTime();		
+				DateTime now = dtHelper.getBlogNow(blog1);
+				DateTime fiveDaysAgo = dtHelper.getBlogNowMinusDays(now, 5);		
 				List<BlogEntry> history = BlogEntry.loadBlogHistoryForPeriod(blog1, fiveDaysAgo, now);
 				assertThat(history.size()).isEqualTo(1);
 				assertThat(history.get(0).mood).isEqualTo(Mood.HAPPY);
@@ -109,5 +112,54 @@ public class BlogEntryDatabaseTest {
 			}			
 		});			
 	}
+	
+	@Test
+	public void moodGroupedByForPeriodShouldReturnEmptyForEmptyBlog() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
+			public void run() {
+				Blog blog = saveTestBlog("test blog");
+				DateTime now = dtHelper.getBlogNow(blog);
+				DateTime fiveDaysAgo = dtHelper.getBlogNowMinusDays(now, 5);		
+				Map<Mood,Integer> map = BlogEntry.loadMoodGroupedByForPeriod(blog, fiveDaysAgo, now);
+				assertThat(map.isEmpty()).isTrue();
+			}			
+		});					
+	}
 
+	@Test
+	public void moodGroupedByForPeriodShouldReturnValidValues() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
+			public void run() {
+				Blog blog = saveTestBlog("test blog");
+				
+				// 3x happy
+				BlogEntry.saveCurrentMoodInBlog(blog.privateLink, "happy", null);
+				BlogEntry.saveCurrentMoodInBlog(blog.privateLink, "happy", null);
+				BlogEntry.saveCurrentMoodInBlog(blog.privateLink, "happy", null);
+				// 2 x sad
+				BlogEntry.saveCurrentMoodInBlog(blog.privateLink, "sad", null);
+				BlogEntry.saveCurrentMoodInBlog(blog.privateLink, "sad", null);
+				// 1 x angry
+				BlogEntry.saveCurrentMoodInBlog(blog.privateLink, "angry", null);
+								
+				DateTime now = dtHelper.getBlogNow(blog);
+				DateTime fiveDaysAgo = dtHelper.getBlogNowMinusDays(now, 5);		
+				Map<Mood,Integer> map = BlogEntry.loadMoodGroupedByForPeriod(blog, fiveDaysAgo, now);
+				
+				assertThat(map.isEmpty()).isFalse();
+				assertThat(map.get(Mood.HAPPY)).isEqualTo(3);
+				assertThat(map.get(Mood.SAD)).isEqualTo(2);
+				assertThat(map.get(Mood.ANGRY)).isEqualTo(1);
+				assertThat(map.get(Mood.NORMAL)).isNull();
+			}			
+		});					
+	}	
+	
+	private void printBlogEntries(Blog blog) {
+		List<BlogEntry> history = BlogEntry.loadBlogHistoryLimitedEntries(blog, 100);
+		for(BlogEntry e: history) {
+			System.out.println(e.tstamp.toString() + " => " + e.mood);
+		}
+	}
+	
 }

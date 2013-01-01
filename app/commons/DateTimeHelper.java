@@ -3,6 +3,8 @@ package commons;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Blog;
+
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -54,5 +56,14 @@ public class DateTimeHelper {
 		}
 		return days;
 	}
+	
+	public DateTime getBlogNow(Blog blog) {
+		return new DateTime().withZone(blog.getTimeZone());		
+	}
+	
+	public DateTime getBlogNowMinusDays(DateTime now, int numdays) {
+		return new DateMidnight( now.minusDays(numdays-1)).toDateTime();
+	}
+	
 	
 }

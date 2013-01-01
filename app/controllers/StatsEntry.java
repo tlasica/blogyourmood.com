@@ -1,4 +1,6 @@
-package models;
+package controllers;
+
+import models.Mood;
 
 public class StatsEntry {
 

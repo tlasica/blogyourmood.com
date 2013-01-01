@@ -13,7 +13,7 @@ public enum Mood {
 	ANGRY;
 
 	public static Mood fromString(String status) {
-		return STRINGTOENUMMAP.get(status);
+		return STRINGTOENUMMAP.get(status.toLowerCase());
 	}
 	
 	@SuppressWarnings("serial")

@@ -1,3 +1,27 @@
+2012-12-30
+
+Podczas próby zmiany wczytywania statystyl na group by okazało się,
+że filtrowanie po czasie działa na hsqldb a nie działa na postgresie.
+Wrzuciłem błędną wersję na heroku po przetestowaniu.
+W związku z tym:
+1. musiałem wycofac na heroku
+    git push heroku <sha>:master
+
+    niepotrzebnie zrobiłem git reset HEAD~3 aby wycofać 3 commity.
+    I teraz mam stan bez commitow, ale ze zmienionymi plikami.
+
+2. przestawić lokalną bazę danych na psql
+    * sudo su - postgres psql
+    * create user moodapp
+    * create database blogyourmood owner moodapp;
+    * zmiana w pliku conf
+    działa!
+    
+A teraz trzeba naprawić, aby ta filtracja działała.
+Problem jest albo w przekazywaniu parametrów typu DateTime,
+albo w braku TimeZone w db ?
+
+
 2012-10-03
 
 Adwords campaign started, max 1zł /dzień, 0,05 CPC
@@ -8,3 +32,9 @@ Tried to pubish in a google chrome shop, but:
 2012-10-02
 
 Blog post about my emotions after 2 weeks of using it + link on FB.
+
+
+
+
+
+https://developers.google.com/chart/interactive/docs/quick_start
