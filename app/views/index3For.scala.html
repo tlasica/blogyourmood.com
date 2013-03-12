@@ -1,0 +1,67 @@
+@(message: String)
+
+@main(showAddThis=true) {
+	
+	<!--
+	<div id="news">
+    <iframe src="http://www.playframework.org/widget?uid=280951424d43c3d11724441d4d1f275443673294&version=2.0.1&tag=JAVA" scrolling="no" style="overflow: hidden; display: block; margin: 0 auto; width: 960px; height: 60px"></iframe>
+	</div>    
+	-->
+
+	<div id="content" class="wrapper doc">
+	
+	<article>
+
+		<h1>Your Happiness Index</h1>
+		<p>
+		Start tracking your emotions at work or in the office.
+		Create a blog, record the emotions and analyze them with statistics and calendar view.
+		</p>
+		<p>
+		<nav>
+		<a href="/register" class="button">Create Happiness Index</a>
+		</nav>
+		</p>
+
+		<h1>Mood Board For The Team</h1>
+		<p>
+		Easy-to-use online Mood Board for your team.
+		It is up to you if it is anonymous or not.
+		Create a blog and share the link with your team.
+		</p>
+		<p>
+		<nav>
+		<a href="/register" class="button">Create Team Mood Board</a>
+		</nav>
+		</p>
+
+		<h1>Opinions for Your Product</h1>
+		<p>
+		Do you want to know what people think about your product or service ?
+		Ask them! Create a blog and share with the users. 
+		</p>
+		<p>
+		<nav>
+		<a href="/register" class="button">Create Emotions Survey</a>
+		</nav>
+		</p>
+	</article>
+	
+	<aside>
+		
+		<p>
+		Record the emotions at any time with those nice smileys!
+		</p>
+		
+		<img src="@routes.Assets.at("images/face-happy.jpg")" width=100/>
+		<img src="@routes.Assets.at("images/face-neutral.jpg")" width=100/>
+		<img src="@routes.Assets.at("images/face-sad.jpg")" width=100/>
+		<img src="@routes.Assets.at("images/face-angry.jpg")" width=100/>
+		<p>Read more about <a href="/features">features</a>,</p>		
+		<p>Try our <a href="/demo">demo version</a></p>
+		<p>...or just <a href="/register">start using it!</a></p>
+
+	</aside>
+
+	</div>
+}

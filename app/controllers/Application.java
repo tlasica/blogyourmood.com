@@ -13,6 +13,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
+import views.html.index3For;
 
 //TODO: match instead of ifs in blog.scala.html
 
@@ -23,7 +24,7 @@ public class Application extends Controller {
 	static Form<BlogEntry>moodForm = form(BlogEntry.class);
 
 	public static Result index() {
-		return ok(index.render("Your new application is ready."));
+		return ok(views.html.index3For.render("Your new application is ready."));
 	}
 
 	public static Result features() {
