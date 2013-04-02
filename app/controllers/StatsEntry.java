@@ -14,7 +14,12 @@ public class StatsEntry {
 	}
 	
 	public StatsEntry withUpdatedPercent(long total) {
-		percent = ( 100.0 * count ) / (double) total;
+		if (total > 0) {
+			percent = ( 100.0 * count ) / (double) total;
+		}
+		else {
+			percent = 0.0;
+		}
 		return this;
 	}
 	

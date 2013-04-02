@@ -24,7 +24,7 @@ public class Application extends Controller {
 	static Form<BlogEntry>moodForm = form(BlogEntry.class);
 
 	public static Result index() {
-		return ok(views.html.index3For.render("Your new application is ready."));
+		return ok(views.html.index.render("Your new application is ready."));
 	}
 
 	public static Result features() {
