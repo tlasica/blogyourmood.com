@@ -8,17 +8,17 @@
 	
 	<article>
 	
-		<h1>Create new mood blog</h1>
+		<h2>Create new mood blog</h2>
 		<p>
 		All you have to do is to provide a label for your blog and click the button.
 		</p>
 		<p>
-		After creation you will get a <b>login link</b>.<br>
+		After creation you will get an unique <b>login link</b>.<br>
 		<p>
 		@form(routes.Registration.createBlog(), 'id->"registerForm") {
-			@inputText( blogCreateForm("label"), '_label->"Please label your blog", 'size->30, '_showErrors->true, '_showConstraints->true )
+			@inputText( blogCreateForm("label"), '_label->"Please name your blog", 'size->30, '_showErrors->true, '_showConstraints->true )
 			<input type="hidden" id="HIDDEN_TIMEZONE" name="TIMEZONE" val=""/>
-			<input type="submit" value="Create new blog" class="button">
+			<input type="submit" value="Create my blog!" class="button">
 		}
 		</p>
 	
