@@ -151,3 +151,5 @@ input.moodButton:active{box-shadow:0 1px 0 #6dae38;top:2px;-webkit-transition:no
 a.MOOD_OPTION{color:white;}
 
 p.blogHistory{margin: 3px 0px; line-height: 0.8em;}
+
+/*div#suggestLink {text-align:right;margin:0px;}*/

@@ -8,6 +8,7 @@ GET		/blog/:id					controllers.Application.showBlog(id)
 POST	/blog/:id/status			controllers.Application.addStatus(id)
 
 GET		/demo						controllers.DemoBlog.demo()
+GET		/feedback					controllers.Feedback.showBlog()
 GET		/features					controllers.Application.features()
 
 #GET		/blog/:id/timechart/:days	controllers.Charts.timechart(id,days)
