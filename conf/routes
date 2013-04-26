@@ -11,10 +11,9 @@ GET		/demo						controllers.DemoBlog.demo()
 GET		/feedback					controllers.Feedback.showBlog()
 GET		/features					controllers.Application.features()
 
-#GET		/blog/:id/timechart/:days	controllers.Charts.timechart(id,days)
-#GET		/blog/:id/histogram/:days	controllers.Charts.histogram(id,days)
 GET		/blog/:id/calendar/:period	controllers.Charts.calendar(id,period)
 GET		/blog/:id/stats/:period		controllers.Charts.stats(id,period)
+GET		/blog/:id/scatter/:period	controllers.Charts.scatter(id,period)
 
 GET		/register					controllers.Registration.showRegisterPage()
 POST	/register					controllers.Registration.createBlog()

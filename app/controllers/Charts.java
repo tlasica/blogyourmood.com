@@ -34,7 +34,26 @@ public class Charts extends Controller {
 	}
 
 	//
-	// Calendar View
+	// Scatter view = 2 dimensional chart : date x time => mood
+	//
+	
+	public static Result scatter(String blogPrivLink, String numDays) {
+		int days = Integer.valueOf(numDays);
+		Blog blog = Blog.findByPrivateLink(blogPrivLink);
+		if(null==blog) {
+			return play.mvc.Results.internalServerError(ERROR_PAGE_STR);
+		}
+		// Load data
+		DateTime now = DTHELPER.getBlogNow(blog);
+		DateTime fromDate = DTHELPER.getBlogNowMinusDays(now, days);		
+		List<BlogEntry> blogEntries = BlogEntry.loadBlogHistoryForPeriod(blog, fromDate, now);
+		String durationStr = DTHELPER.durationString(days);
+		return ok(views.html.scatter.render(blog, blogEntries, durationStr, days));
+	}
+	
+	
+	//
+	// Calendar==History View
 	//
 	
 	public static Result calendar(String blogPrivLink, String numDays) {
