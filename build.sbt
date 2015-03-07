@@ -1,4 +1,4 @@
-name := """BlogYoourMood"""
+name := """BlogYourMood"""
 
 version := "1.1"
 
