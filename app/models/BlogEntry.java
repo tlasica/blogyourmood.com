@@ -69,10 +69,13 @@ public class BlogEntry extends Model {
 	@Transactional
 	public static void saveCurrentMoodInBlog(String blogPrivLink, String status, String notes) {
 		Blog blog = Blog.findByPrivateLink( blogPrivLink );
-		BlogEntry entry = new BlogEntry( Mood.fromString(status) );
-		entry.blog = blog;
-		entry.notes = notes;
-		entry.save();		
+        if (blog != null) {
+		    BlogEntry entry = new BlogEntry( Mood.fromString(status) );
+		    entry.blog = blog;
+		    entry.notes = notes;
+		    entry.save();
+        }
+        else throw new IllegalArgumentException("Blog with this ID does not exists.");
 	}
 
 			

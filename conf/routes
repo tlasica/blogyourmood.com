@@ -22,6 +22,14 @@ GET		/welcome/:id				controllers.Registration.showWelcomeBlogPage(id)
 
 GET		/public/:id					controllers.Application.showPublic(id)
 
+# REST API to save moods and fetch data
+
+POST    /blog/:id/happy             controllers.Application.saveMood(id, moodName="HAPPY")
+POST    /blog/:id/normal            controllers.Application.saveMood(id, moodName="NORMAL")
+POST    /blog/:id/sad               controllers.Application.saveMood(id, moodName="SAD")
+POST    /blog/:id/angry             controllers.Application.saveMood(id, moodName="ANGRY")
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET		/sitemap.xml				controllers.Assets.at(path="/public", file="sitemap.xml")
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

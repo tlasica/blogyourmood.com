@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Blog;
 import models.BlogEntry;
+import models.Mood;
 import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -76,7 +77,21 @@ public class Application extends Controller {
 		BlogEntry curr = history.isEmpty() ? null : history.get(0);
 		return ok(views.html.publicview.render(blog, curr));		
 	}
-	
+
+
+    public static Result saveMood(String blogPrivLink, String moodName) {
+        try {
+            String notes = null;
+            BlogEntry.saveCurrentMoodInBlog(blogPrivLink, moodName, notes);
+            return ok();
+        }
+        catch (IllegalArgumentException e) {
+            return notFound(e.getMessage());
+        }
+        catch (Exception e) {
+            return internalServerError(e.getMessage());
+        }
+    }
 
 	public static Result manifest() {
 		ObjectNode result = Json.newObject();
