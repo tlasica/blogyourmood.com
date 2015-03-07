@@ -12,7 +12,7 @@ import views.html.register;
 
 public class Registration extends Controller {
 
-	static Form<Blog> blogCreateForm = form(Blog.class);
+	static Form<Blog> blogCreateForm = Form.form(Blog.class);
 
 	public static Result showRegisterPage() {
 		return ok(register.render(blogCreateForm));
@@ -23,7 +23,7 @@ public class Registration extends Controller {
 		if (form.hasErrors()) {
 			return badRequest(register.render(form));
 		} else {
-			String timezoneStr = form().bindFromRequest().get("TIMEZONE");
+			String timezoneStr = Form.form().bindFromRequest().get("TIMEZONE");
 			Blog blog = form.get();			
 			blog.timezone = timezoneStr;
 			blog.createdOn = DateTime.now(DateTimeZone.forID(blog.timezone)); 

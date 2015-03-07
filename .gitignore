@@ -5,5 +5,11 @@ target
 tmp
 .history
 dist
-.project
-.classpath
+/.idea
+/*.iml
+/out
+/.idea_modules
+/.classpath
+/.project
+/RUNNING_PID
+/.settings

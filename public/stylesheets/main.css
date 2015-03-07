@@ -142,7 +142,7 @@ p.importantParagraph{color:red; font-weight:bold;}
 
 #logo{clear:left; float:left; margin-right:20px;}
 
-p.calendarRow{line-height: 24px; margin:0px 0; font-size:12px;}
+p.calendarRow{line-height: 24px; margin:0px 10px 0px 20px; font-size:12px;}
 
 input.moodButton{position:relative; text-indent:-9999em; height:120px; width:150px; background:url("/assets/images/face-happy.jpg") no-repeat; color:white; border:none;}
 input.moodButton:hover{box-shadow:0 3px 0 #6dae38,0 3px 4px rgba(0, 0, 0, 0.3);}

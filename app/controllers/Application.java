@@ -2,8 +2,7 @@ package controllers;
 
 import java.util.List;
 
-import org.codehaus.jackson.node.ObjectNode;
-
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Blog;
 import models.BlogEntry;
 import play.Logger;
@@ -21,7 +20,7 @@ public class Application extends Controller {
 
 	private static final int DEF_HISTORY_LIMIT = 3;
 
-	static Form<BlogEntry>moodForm = form(BlogEntry.class);
+	static Form<BlogEntry>moodForm = Form.form(BlogEntry.class);
 
 	public static Result index() {
 		return ok(views.html.index.render("Your new application is ready."));
@@ -57,7 +56,7 @@ public class Application extends Controller {
 			return badRequest(views.html.blog.render(blog, blogHistory, bindEntryForm, null));
 		}
 		else {		
-			DynamicForm form = form().bindFromRequest();		
+			DynamicForm form = Form.form().bindFromRequest();
 			String notes = form.get("notes");
 			String moodName = form.get("CHOOSEN_MOOD");
 					
