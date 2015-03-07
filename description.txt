@@ -1,0 +1,22 @@
+Zapisuj i analizuj swój nastrój i emocje.
+Zbuduj własny index szczęścia (ang. happiness index) w swojej komórce.
+
+Można by powiedzieć, że to kolejna aplikacja do śledzenia nastroju. Racja. 
+Ale wyjątkowo elegancka i wygodna.
+
+Pewnie zastanawiasz się czy warto rejestrować swoje emocje?
+No cóż, podobnie jak ze spisywaniem tego, co zjadłaś (zjadłeś): dopóki nie prowadzisz ewidencji wydaje się, że wszystko jest w największym porządku...
+
+Ja zacząłem bo czułem się nieco nerwowy. Stworzyłem więc najpierw serwis internetowy (blogyoumood.com) a potem tę aplikację. Przez 3 tygodnie rejestrowałem swoją złość lub zasmucenie,
+ale także chwile, kiedy byłem zadowolony (np. po udanym treningu). Po tym czasie sprawdziłem statystyki.
+Okazało się, że ponad 50% zarejestrowanych emocji to odczucia negatywne: złość lub smutek.
+Postanowiłem coś z tym zrobić: mniej się przejmować, szukać pozytywów.
+Dzisiaj wygląda to nieco lepiej :-)
+
+Mood Tracker daje następujące możliwości:
+> rejestracja nastroju 1 prostym klikiem
+> możliwość dodania opisu do nastroju
+> przeglądanie historii zarejestrowanych emocji (tu przydają się opisy)
+> analiza rozkładu w różnych okresach czasu
+
+Mood Tracker to świetny osobisty indeks szczęścia albo kalendarza Niko-Niko.
