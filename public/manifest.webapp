@@ -1,0 +1,14 @@
+{
+  "name": "Emotions Blog",
+  "description": "Mood Blog is simple and light service which allows to track your happiness index by recording your emotions.",
+  "launch_path": "/",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "3kawki.pl",
+    "url": "www.3kawki.pl"
+  },
+  "default_locale": "en"
+}
+
