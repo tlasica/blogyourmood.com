@@ -29,6 +29,12 @@ POST    /blog/:id/normal            controllers.Application.saveMood(id, moodNam
 POST    /blog/:id/sad               controllers.Application.saveMood(id, moodName="SAD")
 POST    /blog/:id/angry             controllers.Application.saveMood(id, moodName="ANGRY")
 
+GET     /blog/:id/3                 controllers.Application.saveMood(id, moodName="HAPPY")
+GET     /blog/:id/2                 controllers.Application.saveMood(id, moodName="NORMAL")
+GET     /blog/:id/1                 controllers.Application.saveMood(id, moodName="SAD")
+GET     /blog/:id/0                 controllers.Application.saveMood(id, moodName="ANGRY")
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET		/sitemap.xml				controllers.Assets.at(path="/public", file="sitemap.xml")
