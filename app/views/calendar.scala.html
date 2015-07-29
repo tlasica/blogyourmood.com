@@ -2,86 +2,69 @@
 
 @main(showAddThis=true) {
 
-	<div id="content" class="wrapper doc">
-	
-	<article>
+<div class="container theme-showcase" role="main">
+
+	<div class="container" id="links">
+
+		<nav class="navbar" role="navigation">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/blog/@blog.privateLink">Blog home</a></li>
+					<li><a href="/blog/@blog.privateLink/stats/7">Statistics</a></li>
+					<li><a href="/blog/@blog.privateLink/scatter/7">Time chart</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/blog/@blog.privateLink/calendar/7">a week</a></li>
+					<li><a href="/blog/@blog.privateLink/calendar/14">two weeks</a></li>
+					<li><a href="/blog/@blog.privateLink/calendar/30">one month</a></li>
+					<li><a href="/blog/@blog.privateLink/calendar/60">two months</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+
+	</div>
+
+	<div class="page-header">
 		<h2>@blog.label</h2>
 		<p>See how your mood changed during last @period:</p>
 
 		@for(day <- calendar) {
-			<h4>@day.dateStr</h4>
-			@for(mood <- day.moods) {
-				<p class="calendarRow">
-				<!-- IMAGE TODO: make a function! -->
-				@if(mood.mood == models.Mood.ANGRY) {
-					<image src="@routes.Assets.at("images/face-angry-small.jpg")" height=16/>
+			<div class="page-header">
+			<h3>@day.dateStr</h3>
+				@if(day.moods.isEmpty()){
+					<small>no records...</small>
 				}
-				@if(mood.mood == models.Mood.SAD) { 
-					<image src="@routes.Assets.at("images/face-sad-small.jpg")" height=16/>
-				}
-				@if(mood.mood == models.Mood.NORMAL) { 
-					<image src="@routes.Assets.at("images/face-neutral-small.jpg")" height=16/>
-				}
-				@if(mood.mood == models.Mood.HAPPY) { 
-					<image src="@routes.Assets.at("images/face-happy-small.jpg")" height=16/>
-				}
-				@mood.timeStr(blog.getTimeZone()) @if(mood.notes) {@mood.notes} else {<small>no comment given</small>}
-				</p>
-			}
-			@if(day.moods.isEmpty()){
-			<small>no emotions recorded...</small>
-			}
+				<table class="table table-bordered table-striped table-hover">
+					<tbody>
+					@for(entry <- day.moods) {
+					<tr>
+						<td>
+							@if(entry.mood == models.Mood.ANGRY) {
+							<image src="@routes.Assets.at("images/face-angry.png")" alt="angry" height=24px />
+							}
+							@if(entry.mood == models.Mood.SAD) {
+							<image src="@routes.Assets.at("images/face-sad.png")" alt="sad" height=24px />
+							}
+							@if(entry.mood == models.Mood.NORMAL) {
+							<image src="@routes.Assets.at("images/face-neutral.png")" alt="normal" height=24px />
+							}
+							@if(entry.mood == models.Mood.HAPPY) {
+							<image src="@routes.Assets.at("images/face-happy.png")" alt="happy" height=24px />
+							}
+						</td>
+						<td>@entry.timeStr(blog.getTimeZone())</td>
+						<td>@entry.notes</td>
+					</tr>
+					}
+				</tbody>
+				</table>
+
+			</div>
 		}
 
-	</article>
-	
-	<aside>
-	<p>
-	<a href="/blog/@blog.privateLink">HOME</a><br>
-	<small>go back to the blog</small>
-	</p>
-
-	<h3>Set period</h3>
-	<small>choose 7, 14, 30 or 60 days from now</small>
-	<p>
-	<a href="/blog/@blog.privateLink/calendar/7">a week</a>
-	</p>
-	<p>
-	<a href="/blog/@blog.privateLink/calendar/14">two weeks</a>
-	</p>
-	<p>
-	<a href="/blog/@blog.privateLink/calendar/30">one month</a>
-	</p>
-	<p>
-	<a href="/blog/@blog.privateLink/calendar/60">two months</a>
-	</p>
-	
-		<h3>Advertisement</h3>
-		<script type="text/javascript">
-		ch_fluidH = 1;
-		ch_nump = "2";
-		ch_client = "tlasica";
-		ch_width = 200;
-		ch_height = "auto";
-		ch_type = "mpu";
-		ch_sid = "moodblog";
-		ch_color_site_link = "35A4FF";
-		ch_color_title = "35A4FF";
-		ch_color_border = "DFDFDF";
-		ch_color_text = "353535";
-		ch_color_bg = "FFFFFF";
-		</script>
-		<p>
-		<script src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript"></script>
-		</p>
-		
-		<h3>Contact</h3>		
-		<p>If you want to share any idea or problem regarding this service please use
-		<a href="/feedback">feedback</a> link.
-		</p>
-			
-	</aside>
-
-	
 	</div>
+
+</div>
+
 }

@@ -3,27 +3,31 @@
 @import helper._
 
 @main(showAddThis=false) {
-	
-	<div id="content" class="wrapper doc">
-	
-	<article>
-	
-		<h2>@blog.label</h2>
+
+<div class="container theme-showcase" role="main">
+
+		<h1>@blog.label</h1>
 		<p>Thank you. Your mood blog has been created.
 		<br>
 		<small>(we have created it with timezone @blog.timezone)</small>
 		</p>
-		<h3>Login link</h3>
+
+		<h2>Login link</h2>
+
+		<div class="alert alert-info" role="alert">
+			Instead of using login or email we give you a link.
+			This link is unique and gives access to your blog.
+			<br>
+			After yu create the blog please <strong>save your link</strong> in some convenient place e.g. in your browser.
+		</div>
+
+
 		<p>
-			We did not ask you to provide any credentials (email, login, password etc.). <br> 
-			For each blog we create an unique <b>login link</b><br>
-			All you need to do, is to <b>save it and keep it safe.</b>
-		</p>
-		<p class="importantParagraph">
-		<a href="/blog/@blog.privateLink">
+		<a class="btn btn-lg btn-link" href="/blog/@blog.privateLink">
 		http://blogyourmood.com/blog/@blog.privateLink
 		</a></p>
-		<h3>How can I save my login link ?</h3>
+
+		<h2>How can I save my login link ?</h2>
 		<p>
 		Before you proceed to your blog please save your login link.
 		You can do this by:
@@ -33,7 +37,9 @@
 		<li>saving the link in delicious, evernote, heapnote or any other Internet service
 		</ul>
 		</p>
-		<a href="/blog/@blog.privateLink">continue, go to my blog</a>
-	</article>
-	
+		<br>
+		<p>
+			<a class="btn btn-lg btn-info" href="/blog/@blog.privateLink">continue, go to my blog</a>
+		</p>
+	</div>
 }

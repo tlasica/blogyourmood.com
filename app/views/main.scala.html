@@ -2,17 +2,34 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Mood Board for Team and Personal Use</title>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
         <meta name="description" content="Online emotions blog for team or personal happiness and mental health tracking.">
         <meta name="keywords" content="Emotions, Team, Blog, Diary, Niko-niko, Smileys, Mood, Mental Health, Happiness">
         
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <!--<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">-->
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/logo.png")">
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
-        <script src="@routes.Assets.at("javascripts/jstz.min.js")" type="text/javascript"></script>		
-        
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>-->
+        <!--<script src="@routes.Assets.at("javascripts/jstz.min.js")" type="text/javascript"></script>		-->
+
 				<script type="text/javascript">
 
 					var _gaq = _gaq || [];
@@ -26,32 +43,40 @@
 					})();
 				</script>        
     </head>
-    <body>    
-		<section id="top">
-			<div class="wrapper">
-				<div display: table-cell>
-				<img id="logo" src="@routes.Assets.at("images/logo.png")" height=50px />
+    <body role="document">
+		<nav class="navbar navbar-default">
+
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">
+						<img alt="Logo" src="@routes.Assets.at("images/logo.png")" height=60px>
+					</a>
+					<a class="navbar-brand" href="/">blogyourmood.com</a>
 				</div>
-				<div display: table-cell>
-				<h1><a href="/" id="logoName">blogyourmood.com</a></h1>
+				<div class="nav navbar-nav navbar-right">
+                    <p class="navbar-btn">
+					<a class="btn btn-warning" href="/feedback">feedback</a>
+                    </p>
 				</div>
-				@if(showAddThis) {
-					<!-- AddThis Button BEGIN -->
-					<div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="float: right; width:250px; margin-top:7px;" addthis:url="http://blogyourmood.com">
-					<a class="addthis_button_preferred_1"></a>
-					<a class="addthis_button_preferred_2"></a>
-					<a class="addthis_button_preferred_3"></a>
-					<a class="addthis_button_preferred_4"></a>
-					<a class="addthis_button_compact"></a>
-					<a class="addthis_counter addthis_bubble_style"></a>
-					</div>
-					<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50774bc8329599d4"></script>
-					<!-- AddThis Button END -->
-				}
+
 			</div>
-		</section>
-    
+		</nav>
+
+				<!--@if(showAddThis) {-->
+					<!--&lt;!&ndash; AddThis Button BEGIN &ndash;&gt;-->
+					<!--<div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="float: right; width:250px; margin-top:7px;" addthis:url="http://blogyourmood.com">-->
+					<!--<a class="addthis_button_preferred_1"></a>-->
+					<!--<a class="addthis_button_preferred_2"></a>-->
+					<!--<a class="addthis_button_preferred_3"></a>-->
+					<!--<a class="addthis_button_preferred_4"></a>-->
+					<!--<a class="addthis_button_compact"></a>-->
+					<!--<a class="addthis_counter addthis_bubble_style"></a>-->
+					<!--</div>-->
+					<!--<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50774bc8329599d4"></script>-->
+					<!--&lt;!&ndash; AddThis Button END &ndash;&gt;-->
+				<!--}-->
+
         @content
-        
+
     </body>
 </html>

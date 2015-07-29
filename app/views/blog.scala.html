@@ -5,119 +5,120 @@
 
 @main(showAddThis=true) {
 	
-	<script type="text/javascript">$.localtime.setFormat("dd/MM HH:mm");</script>
+<script type="text/javascript">$.localtime.setFormat("dd/MM HH:mm");</script>
+
+<div class="container theme-showcase" role="main">
+
+	<div class="container" id="links">
+
+		<nav class="navbar" role="navigation">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/blog/@blog.privateLink">Blog home</a></li>
+					<li><a href="/blog/@blog.privateLink/calendar/7">History</a></li>
+					<li><a href="/blog/@blog.privateLink/stats/7">Statistics</a></li>
+					<li><a href="/blog/@blog.privateLink/scatter/7">Time chart</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/public/@blog.publicLink">Share</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+
+	</div>
+
+
+	<div class="jumbotron">
 	
-	<div id="content" class="wrapper doc">
-	
-	<article>
-	
-		<h2>@blog.label</h2>
+		<h1>@blog.label</h1>
 		<p>What is your mood now ?
 		<small>	(1. make a short description and 2. click emoticon relevant to your mood)</small>
 		</p>		
 		<div id="moods">
 		@form(routes.Application.addStatus(blog.privateLink), 'id->"MOOD_FORM") {
-			@inputText( moodForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->63, '_showErrors->true, '_showConstraints->true )
+			@inputText( moodForm("notes"), '_label->"Any comments (e.g. the reason) ?", 'size->63, '_showErrors->true, '_showConstraints->true, 'class->"form-control" )
 			<input type="hidden" id="HIDDEN_MOOD_INPUT" name="CHOOSEN_MOOD" val=""/>			
 			@defining(moodForm("mood")) { moodField =>
   				<input type="hidden" name="@moodField.name" id="moodField" value="@moodField.value">
 			}
 		}
-		
 
-		<a href="#" class="MOOD_OPTION" value="happy">
-			<img src="@routes.Assets.at("images/face-happy.jpg")" alt="happy" width=150px />
-		</a>		
-		<a href="#" class="MOOD_OPTION" value="normal">
-			<img src="@routes.Assets.at("images/face-neutral.jpg")" alt="normal" width=150px />
-		</a>
-		<a href="#" class="MOOD_OPTION" value="sad">
-			<img src="@routes.Assets.at("images/face-sad.jpg")" alt="sad" width=150px />
-		</a>
-		<a href="#" class="MOOD_OPTION" value="angry">		
-			<img src="@routes.Assets.at("images/face-angry.jpg")" alt="angry" width=150px />
-		</a>
-		</div>
+			<div class="row">
+				<div class="col-md-3">
+					<a href="#" class="MOOD_OPTION" value="happy">
+						<img src="@routes.Assets.at("images/face-happy.png")" alt="happy" width=150px />
+					</a>
+				</div>
 
-	@if(! history.isEmpty() ) {
-		<h3>Recently recorded emotions:</h3>		
-		@for(entry <- history) {
-			<p class="blogHistory">
-			@if(entry.mood == models.Mood.ANGRY) { 
-			<image src="@routes.Assets.at("images/face-angry-small.jpg")" alt="angry" height=20px />
-			}
-			@if(entry.mood == models.Mood.SAD) { 
-			<image src="@routes.Assets.at("images/face-sad-small.jpg")" alt="sad" height=20px />
-			}
-			@if(entry.mood == models.Mood.NORMAL) { 
-			<image src="@routes.Assets.at("images/face-neutral-small.jpg")" alt="normal" height=20px />
-			}
-			@if(entry.mood == models.Mood.HAPPY) { 
-			<image src="@routes.Assets.at("images/face-happy-small.jpg")" alt="happy" height=20px />
-			}
-			at @entry.timestampLocalStr(blog.getTimeZone())	@entry.notes
-			</p>
-		}
-	}
+				<div class="col-md-3">
+					<a href="#" class="MOOD_OPTION" value="normal">
+						<img src="@routes.Assets.at("images/face-neutral.png")" alt="normal" width=150px />
+					</a>
+				</div>
 
-	</article>
-	
-	<aside>
-	<p>
-	<a href="/blog/@blog.privateLink">blog home</a><br>
-	<small>go back to the blog</small>
-	</p>
-	<p>
-	<a href="/public/@blog.publicLink">public link</a><br>
-	<small>share current mood with friends</small>
-	</p>
-	<p>
-	<a href="/blog/@blog.privateLink/calendar/7">history</a><br>
-	<small>history of your mood</small>
-	</p>
-	<p>
-	<a href="/blog/@blog.privateLink/stats/7">statistics</a><br>
-	<small>percentage statistics</small>
-	</p>
-	<p>
-	<a href="/blog/@blog.privateLink/scatter/7">time chart</a><br>
-	<small>time chart</small>
-	</p>
-	
-		<h3>Android version</h3>
-		<p>I've released an application for android platform on Google Play:<br> 
-		<a href="https://play.google.com/store/apps/details?id=pl.tlasica.moodtracker">Mood Tracker</a>
-		</p>	
-	
-		<h3>Advertisement</h3>
-		<script type="text/javascript">
-		ch_fluidH = 1;
-		ch_nump = "2";
-		ch_client = "tlasica";
-		ch_width = 200;
-		ch_height = "auto";
-		ch_type = "mpu";
-		ch_sid = "moodblog";
-		ch_color_site_link = "35A4FF";
-		ch_color_title = "35A4FF";
-		ch_color_border = "DFDFDF";
-		ch_color_text = "353535";
-		ch_color_bg = "FFFFFF";
-		</script>
-		<p>
-		<script src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript"></script>
-		</p>	
-	
-		<h3>Contact</h3>		
-		<p>If you want to share any idea or problem regarding this service please use
-		<a href="/feedback">feedback</a> link.
-		</p>
-	
-	</aside>
+				<div class="col-md-3">
+					<a href="#" class="MOOD_OPTION" value="sad">
+						<img src="@routes.Assets.at("images/face-sad.png")" alt="sad" width=150px />
+					</a>
+				</div>
+
+				<div class="col-md-3">
+					<a href="#" class="MOOD_OPTION" value="angry">
+						<img src="@routes.Assets.at("images/face-angry.png")" alt="angry" width=150px />
+					</a>
+				</div>
+			</div>
+
+		</div> <!-- moods -->
+
 	</div>
 
+	@if(! history.isEmpty() ) {
+		<div class="page-header" id="history">
+			<h2>Recent emotions</h2>
+
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+				<tr>
+					<th>Mood</th>
+					<th>When</th>
+					<th>Description</th>
+				</tr>
+				</thead>
+				<tbody>
+
+				@for(entry <- history) {
+				<tr>
+					<td>
+					@if(entry.mood == models.Mood.ANGRY) {
+					<image src="@routes.Assets.at("images/face-angry.png")" alt="angry" height=30px />
+					}
+					@if(entry.mood == models.Mood.SAD) {
+					<image src="@routes.Assets.at("images/face-sad.png")" alt="sad" height=30px />
+					}
+					@if(entry.mood == models.Mood.NORMAL) {
+					<image src="@routes.Assets.at("images/face-neutral.png")" alt="normal" height=30px />
+					}
+					@if(entry.mood == models.Mood.HAPPY) {
+					<image src="@routes.Assets.at("images/face-happy.png")" alt="happy" height=30px />
+					}
+					</td>
+					<td>@entry.timestampLocalStr(blog.getTimeZone())</td>
+					<td>@entry.notes</td>
+				</tr>
+				}
+				</tbody>
+			</table>
+
+		</div> <!-- history -->
+	}
+
+	</div> <!-- main -->
+	
+
 	@if(message) {
-		<div id="news" class="wrapper">
+		<div class="alert alert-info" role="alert">
 		<p>@message</p>
 		</div>    
 	

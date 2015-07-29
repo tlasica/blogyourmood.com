@@ -4,9 +4,30 @@
 	<!--Load the AJAX API-->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-	<div id="content" class="wrapper doc">
-	
-	<article>
+<div class="container theme-showcase" role="main">
+
+	<div class="container" id="links">
+
+		<nav class="navbar" role="navigation">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/blog/@blog.privateLink">Blog home</a></li>
+					<li><a href="/blog/@blog.privateLink/calendar/7">History</a></li>
+					<li><a href="/blog/@blog.privateLink/scatter/7">Time chart</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/blog/@blog.privateLink/stats/7">a week</a></li>
+					<li><a href="/blog/@blog.privateLink/stats/14">two weeks</a></li>
+					<li><a href="/blog/@blog.privateLink/stats/30">one month</a></li>
+					<li><a href="/blog/@blog.privateLink/stats/60">two months</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+
+	</div> <!-- links -->
+
+	<div class="page-header">
 		<h2>@blog.label</h2>
 		<p>
 			Mood distribution during last @period:
@@ -15,47 +36,9 @@
    		<!--Div that will hold the pie chart-->
     	<div id="chart_div"></div>
 
-	</article>
+	</div>
 	
-	<aside>
-		<p>
-		<a href="/blog/@blog.privateLink">HOME</a><br>
-		<small>go back to the blog</small>
-		</p>
 
-		<h3>Set period</h3>
-		<small>choose 7, 14, 30 or 60 days from now</small>
-		<p>	<a href="/blog/@blog.privateLink/stats/7">a week</a></p>
-		<p>	<a href="/blog/@blog.privateLink/stats/14">two weeks</a></p>
-		<p>	<a href="/blog/@blog.privateLink/stats/30">one month</a> </p>
-		<p>	<a href="/blog/@blog.privateLink/stats/60">two months</a> </p>
-		
-		<h3>Advertisement</h3>
-		<script type="text/javascript">
-		ch_fluidH = 1;
-		ch_nump = "2";
-		ch_client = "tlasica";
-		ch_width = 200;
-		ch_height = "auto";
-		ch_type = "mpu";
-		ch_sid = "moodblog";
-		ch_color_site_link = "35A4FF";
-		ch_color_title = "35A4FF";
-		ch_color_border = "DFDFDF";
-		ch_color_text = "353535";
-		ch_color_bg = "FFFFFF";
-		</script>
-		<p>
-		<script src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript"></script>
-		</p>
-		
-		<h3>Contact</h3>		
-		<p>If you want to share any idea or problem regarding this service please use
-		<a href="/feedback">feedback</a> link.
-		</p>
-				
-	</aside>
-	
 	</div>
 
 	<!-- generating chart -->	

@@ -1,9 +1,9 @@
 @main(showAddThis=true) {
-	
-	<div id="content" class="wrapper doc">
-	
-	<article>
-	
+
+<div class="container theme-showcase" role="main">
+
+
+	<div class="page-header">
 		<p><i>
 		One day I realized that a bit too often I feel angry or said, especially in the office.
 		I'm not sure how severe the problem is and decided to track it.
@@ -12,11 +12,10 @@
 		of recorded emotions were angry or sad!		
 		Since then I try to improve my stats and things look a bit more green today...
 		</i></p>
-		<p><b>
-		Record your emotions and visualize the history in different perspectives.		
-		</b></p>		
-		
-		<h3>Record your mood</h3>
+	</div>
+
+	<div class="page-header">
+		<h2>Record your mood</h2>
 		<p>
 		Record you current emotions with 1 simple click.<br>
 		In addition you can provide a short (one line) description for recorded emotions.		 
@@ -27,8 +26,10 @@
 		But if you are using blogyourmood.com as a happiness index then maybe at the end of work (or day) is the best approach. 
 		</p>		
 		<img class="screenshot" src="@routes.Assets.at("images/screen-blog.jpg")" width=60% alt="blog page screenshot"/>
+	</div>
 
-		<h3>Check statistics</h3>
+	<div class="page-header">
+		<h2>Check statistics</h2>
 		<p>
 		Statistics view (available from the right panel) tells you what is the distribution of recorded emotions.
 		It presents a nice coloured pie chart for all records in a given period of time (7,14,30 or 60 days).
@@ -39,8 +40,10 @@
 		gives you immediate insight what people think about it. 
 		</p>
 		<img class="screenshot" src="@routes.Assets.at("images/screen-stats.jpg")" width=60% alt="statistics screenshot"/>
+	</div>
 
-		<h3>Time chart</h3>
+	<div class="page-header">
+		<h2>Time chart</h2>
 		<p>
 		Time Chart shows how do you feel in different parts of the day.
 		It presents distribution of emotions recorded in some period of time (7,14,30 or 60 days)
@@ -50,8 +53,11 @@
 		This feature is especially important if you use blogyourmood.com as a personal happiness index.
 		</p>
 		<img class="screenshot" src="@routes.Assets.at("images/screen-scatter.jpg")" width=60% alt="timechart screenshot"/>
+	</div>
 
-		<h3>The history</h3>
+	<div class="page-header">
+
+		<h2>The history</h2>
 		<p>
 		In addition to statistics or time chart views blogyourmood.com offers a history view.
 		It will show you all the recorded moods (with their description) organized day by day.
@@ -61,47 +67,9 @@
 		The history view is usefull if you use blogyourmood.com to gather other people's feeling about your idea or product.
 		</p>
 		<img class="screenshot" src="@routes.Assets.at("images/screen-calendar.jpg")" width=60% alt="calendar screenshot"/>
-		
-	</article>
-	
-	<aside>
-		<h3>How to start</h3>
-		<ul class = "points">
-		<li>It is free</li>
-		<li>It is anonymous</li>
-		<li>no registration</li>		
-		<li>no email</li>		
-		</ul>
-		<p>
-		<nav>
-		<a href="/register" class="button">I want to start</a>
-		</nav>
-		</p>
-		<h3>Demo</h3>
-		<p>
-		Try our <a href="/demo">demo blog</a>.
-		</p>
-		
-		<h3>Advertisement</h3>
-		<script type="text/javascript">
-		ch_fluidH = 1;
-		ch_nump = "3";
-		ch_client = "tlasica";
-		ch_width = 200;
-		ch_height = "auto";
-		ch_type = "mpu";
-		ch_sid = "moodblog";
-		ch_color_site_link = "35A4FF";
-		ch_color_title = "35A4FF";
-		ch_color_border = "DFDFDF";
-		ch_color_text = "353535";
-		ch_color_bg = "FFFFFF";
-		</script>
-		<p>
-		<script src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript"></script>
-		</p>
-		
-	</aside>
 
 	</div>
+
+
+</div>
 }

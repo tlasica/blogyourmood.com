@@ -1,148 +1,127 @@
 @(message: String)
 
 @main(showAddThis=true) {
-	
+
+<div class="container theme-showcase" role="main">
 	<!--
 	<div id="news">
     <iframe src="http://www.playframework.org/widget?uid=280951424d43c3d11724441d4d1f275443673294&version=2.0.1&tag=JAVA" scrolling="no" style="overflow: hidden; display: block; margin: 0 auto; width: 960px; height: 60px"></iframe>
 	</div>    
 	-->
 
-	<div id="content" class="wrapper doc">
-	
-	<article>
-	
-		<h2>Record your emotions</h2>
+	<div class="jumbotron">
+		<h1>Track your emotions</h1>
+		<p>	Online happiness index of your team or your personal mood blog.
+			This service is completely free. Registration is not required.
+			You name the blog and we give you a unique link. That's all. </p>
 		<p>
-		Record your current emotions at any time by using one of the smileys:
+			<img src="@routes.Assets.at("images/face-happy.png")" width=150/>
+			<image src="@routes.Assets.at("images/face-neutral.png")" width=150/>
+			<image src="@routes.Assets.at("images/face-sad.png")" width=150/>
+			<image src="@routes.Assets.at("images/face-angry.png")" width=150/>
 		</p>
 		<p>
-		<img src="@routes.Assets.at("images/face-happy.jpg")" width=150/>
-		<image src="@routes.Assets.at("images/face-neutral.jpg")" width=150/>
-		<image src="@routes.Assets.at("images/face-sad.jpg")" width=150/>
-		<image src="@routes.Assets.at("images/face-angry.jpg")" width=150/>
-		</p>
-		<p>
-		Great tool for online happiness index of your team
-		or your personal mood blog.
-		<br>
-		If you want to know more read about the <a href="/features">features</a>
-		or try shared <a href="/demo">demo blog</a>
-		</p>
-
-				
-		<h2>Start your blog</h2>
-		<p>
-		This service is completely free. Registration is not required.<br>
-		You name the blog and we give you a unique link. That's all.
-		</p>
-		<p>
-		<nav>
-		<a href="/register" class="button">Go and create my blog !</a>
-		</nav>
-		</p>
-		
-		<h2 id="reasons">4 reasons to use this tool</h2>
-		<p>
-		Simplicity does not exclude flexibility: blogyourmood.com helps in several different ways. 
-		Read more about 4 most common usage patterns. 
-		<p>
-		
-		<h3>Personal happiness index</h3>
-		<p>
-		Recording personal emotions gives several benefits. 
-		First of all by naming and describing bad emotions we magically lower their impact on us.
-		On the other hand in the same way we increase the impact of good emotions.
-		</p>
-		<p>
-		Start personal mood blog and record the emotions when you feel them.
-		After several weeks you can analyze your mood with time chart and see how often do you feel angry in the office or happy when playing with your kids.
-		This tool gives you a chance to observe yourself.
-		</p>
-		
-		<h3>A Team Mood Board</h3>
-		<p>
-		Recent research on Motivation (e.g. <a href="http://www.danpink.com/">work of Daniel H. Pink</a>) show that happy people are much more productive at work.
-		With blogyourmood.com it is easy to create an online "niko-niko" calendar for your team and measure team happiness.
-		</p>
-		<p>
-		Create blog for your idea or product and share link to it with people in your team.
-		Ask them to record the day when they are leaving.
-		Then check statistics view for general impression or history for detailed information.
-		</p>
-		<p>
-		Read what Jeff Sutherland, a co-author of Scrum wrote <a href="http://scrum.jeffsutherland.com/2010/11/happiness-metric-wave-of-future.html">about team happiness metric</a>.
-		</p>
-		
-		<h3>Organization Insight</h3>
-		<p>
-		In most of the organization people do not communicate what makes them angry or sad at work.
-		There are small problems which may ruin your team productivity and can be easily removed.
-		For example having only one coffee machine for large office or dirty office rooms.
-		Sometimes people will tell you about if you ask them directly, but most of the managers do not ask.
-		With blogyourmood.com you can create an online place to share such problems and impediments.
-		</p>
-		<p>
-		Create a mood blog and share link to it within the organization.
-		Use history view to detect reported problems, impediments and needs. 
-		</p>
-		
-		<h3>Emotions on your idea or product</h3>
-		<p>
-		If you have an idea it is nice to get know what people think about it. 
-		Some of them will love it, some will feel angry or sad.
-		With blogyourmood.com you can gather their emotions online in a clear and elegant way.		
-		</p> 
-		<p>
-		Create blog for your idea or product and share link to it with people you would like to ask for the opinion.
-		Then check statistics view for general impression or history for detailed information.
-		</p>
-		
-		
-	</article>
-	
-	<aside>
-		<h3>Features</h3>
-		<ul class = "points">
-		<li>no registration required</li>
-		<li>no email required</li>		
-		<li>history browser </li>
-		<li>statistics</li>
-		<li>hourly time chart</li>
-		</ul>
-		<a href="/features">more about features</a>
-				
-		<h3>Android version</h3>
-		<p>I've released an application for android platform on Google Play:<br> 
-		<a href="https://play.google.com/store/apps/details?id=pl.tlasica.moodtracker">Mood Tracker</a>
-		</p>
-				
-		<h3>Contact</h3>		
-		<p>If you want to share any idea or problem regarding this service please use
-		<a href="/feedback">feedback</a> link.
-		</p>
-		 
-		<h3>Advertisement</h3>
-		<script type="text/javascript">
-		ch_fluidH = 1;
-		ch_nump = "3";
-		ch_client = "tlasica";
-		ch_width = 200;
-		ch_height = "auto";
-		ch_type = "mpu";
-		ch_sid = "moodblog";
-		ch_color_site_link = "35A4FF";
-		ch_color_title = "35A4FF";
-		ch_color_border = "DFDFDF";
-		ch_color_text = "353535";
-		ch_color_bg = "FFFFFF";
-		</script>
-		<p>
-		<script src="http://scripts.chitika.net/eminimalls/amm.js" type="text/javascript">
-		</script>
-		</p>
-
-	</aside>
-
+            <a class="btn btn-success btn-lg" href="/register" role="button">Start new blog</a>
+            or try out<a class="btn btn-lg btn-link" href="/demo">the demo blog</a>
+        </p>
 	</div>
+
+	<!-- Example row of columns -->
+	<div class="row" id="applications">
+			<div class="col-md-4">
+				<h2>Personal</h2>
+				<p>
+					Recording personal emotions gives several benefits.
+					First of all by naming and describing bad emotions we magically lower their impact on us.
+					On the other hand in the same way we increase the impact of good emotions.
+				</p>
+				<p>
+					Start personal mood blog and record the emotions when you feel them.
+					After several weeks you can analyze your mood with time chart and see how often do you feel angry in the office or happy when playing with your kids.
+					This tool gives you a chance to observe yourself.
+				</p>
+				<!--<p><a class="btn btn-default" href="/register" role="button">View details &raquo;</a></p>-->
+			</div>
+			<div class="col-md-4">
+				<h2>Team Happiness Index</h2>
+				<p>
+					Recent research on Motivation (e.g. <a href="http://www.danpink.com/">work of Daniel H. Pink</a>) show that happy people are much more productive at work.
+					With blogyourmood.com it is easy to create an online "niko-niko" calendar for your team and measure team happiness.
+				</p>
+				<p>
+					Create blog for your idea or product and share link to it with people in your team.
+					Ask them to record the day when they are leaving.
+					Then check statistics view for general impression or history for detailed information.
+				</p>
+				<p>
+					Read what Jeff Sutherland, a co-author of Scrum wrote <a href="http://scrum.jeffsutherland.com/2010/11/happiness-metric-wave-of-future.html">about team happiness metric</a>.
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>Survey emotions</h2>
+				<p>
+					If you have an idea it is useful to know what people think about it.
+					Some of them will love it, some will feel angry or sad.
+					Gather their emotions online in a clear and elegant way.
+				</p>
+				<p>
+					Create blog for your idea or product and share link to it with people you would like to ask for the opinion.
+					Then check statistics view for general impression or history for detailed information.
+				</p>
+				<!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+			</div>
+
+	</div> <!-- applications -->
+
+    <div class="page-header">
+        <h2>Features</h2>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <h3>One click</h3>
+                <p>Record your emotions with one click on the mood face. Additional description is optional.</p>
+
+                <h3>History browser</h3>
+                <p>Browse the history up to two months.</p>
+            </div>
+
+            <div class="col-lg-4">
+                <h3>Statistics</h3>
+                <p>Nice pie chart will show your mood distribution in given time period.</p>
+
+                <h3>Time chart</h3>
+                <p>Time Chart shows how do you feel in different parts of the day.</p>
+            </div>
+
+            <div class="col-lg-4">
+                <h3>No registration</h3>
+                <p>No registration is required, each blog is accessible via unique secret link</p>
+
+                <h3 >No email</h3>
+                <p>We will not ask you for the email or any other sensitive information - get the link and that's all.</p>
+            </div>
+
+        </div>
+
+        <p>
+            <a href="/features">read more about the features &raquo;</a>
+        </p>
+
+    </div> <!-- features -->
+
+    <!--<div class="page-header">-->
+        <!--<h2>Android application</h2>-->
+        <!--<p>Android application is availabt at Google Play:<br>-->
+            <!--<a href="https://play.google.com/store/apps/details?id=pl.tlasica.moodtracker">Mood Tracker</a>-->
+        <!--</p>-->
+
+    <!--</div>-->
+
+
+</div> <!-- container -->
+
+
+
+
+
 }
