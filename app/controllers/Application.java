@@ -5,15 +5,13 @@ import java.util.List;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Blog;
 import models.BlogEntry;
-import models.Mood;
 import play.Logger;
+import play.cache.Cached;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
-import views.html.index3For;
 
 //TODO: match instead of ifs in blog.scala.html
 
@@ -23,10 +21,12 @@ public class Application extends Controller {
 
 	static Form<BlogEntry>moodForm = Form.form(BlogEntry.class);
 
+	@Cached(key="index", duration=3600)
 	public static Result index() {
 		return ok(views.html.index.render("Your new application is ready."));
 	}
 
+	@Cached(key="features", duration=3600)
 	public static Result features() {
 		return ok(views.html.features.render());
 	}
@@ -93,6 +93,7 @@ public class Application extends Controller {
         }
     }
 
+	@Cached(key="manifest", duration=3600)
 	public static Result manifest() {
 		ObjectNode result = Json.newObject();
 		result.put("name", "Mood Blog");
