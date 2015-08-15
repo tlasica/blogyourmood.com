@@ -1,11 +1,13 @@
 About
 =====
 
-Internet service for tracking individual morale.
+Internet service for tracking individual morale or to build team happiness index.
 
-It is intended to be very simple by not asking users to login.
-Instead it propose unique URL for each user blog.
+It is intended to be very simple:
+* not asking users to login and instead it propose unique URL for each user blog.
+* record mood with one click
+* provide simple charts and statistics
 
-Serive is available at: www.blogyourmood.com
+Service is available online at: www.blogyourmood.com
 
 
