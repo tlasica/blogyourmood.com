@@ -1,6 +1,6 @@
 #How to integrate blogyourmood with #slack
 
-It is very easy to let your teammates record their mood using using #slack commands (see more at [https://api.slack.com/slash-commands])
+It is very easy to let your teammates record their mood using using #slack commands (see more at https://api.slack.com/slash-commands)
 
 Because blogyourmood.com does not require any additional authentication the only thing you have to know is the URL of your mood blog.
 
