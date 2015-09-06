@@ -16,8 +16,10 @@ The correct URL for the POST request is
 
     http://www.blogyourmood.com/blog/YOUR-BLOG-UUID/happy
 
-Replace happy with any of {happy, angry, normal, sad}.
+Create full set of commands: /happy, /angry, /sad, /normal by replacing last part of the URL. Voila!
 
-My favorite command is */wtf*
+
+
+My favorite command is */wtf* => /angry
 
 
