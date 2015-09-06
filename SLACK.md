@@ -18,8 +18,6 @@ The correct URL for the POST request is
 
 Create full set of commands: /happy, /angry, /sad, /normal by replacing last part of the URL. Voila!
 
-
-
-My favorite command is */wtf* => /angry
+It is quite easy to implement WFT counter by defining **/wtf** slash command as *"angry*".
 
 
